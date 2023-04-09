@@ -13,8 +13,8 @@ function Register() {
     let navigate = useNavigate();
 
 
-    const registerEndUser = () => {
-        Axios.post('http://localhost:3001/register_end_user', {
+    const register = () => {
+        Axios.post('http://localhost:3001/register', {
             username: username,
             password: password
         }).then((response) => {
@@ -45,11 +45,11 @@ function Register() {
         <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => { setUsername(e.target.value) }} />
         <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
         <h6>{Status}</h6>
-        <button class="button" onClick={registerEndUser}><span>Register as End User</span></button>
+        <button class="button" onClick={register}><span>Register as End User</span></button>
         <br></br><br></br>
         </div>
         </div>
     );
 };
 
-export default RegisterEndUser;
+export default Register;

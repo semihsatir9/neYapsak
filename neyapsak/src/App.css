@@ -36,3 +36,141 @@
     transform: rotate(360deg);
   }
 }
+/*.App{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}*/
+
+body {
+  background: rgb(30,33,36);
+  background: radial-gradient(circle, rgba(30,33,36,1) 0%, rgba(21,21,21,1) 100%);
+  color: white;
+}
+
+.align-left{
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 160px;
+}
+
+.box{
+  width: 340px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: center;
+  background-color: #212529;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.enlist {
+  margin-top: 260px;
+  position: absolute;
+  /*padding-top: 20%;*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  color: white;
+}
+
+h6 {
+  color: white;
+  text-align: justify;
+  text-justify: inter-word;
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+
+button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.3s;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
+  }
+
+.button:hover span {
+  padding-right:20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=number], select {
+  /*width: 100%;*/
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.forgotPassword {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+
+.display-linebreak{
+  margin-top: 20px;
+}
