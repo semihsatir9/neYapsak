@@ -81,6 +81,12 @@ app.get("/login", (req,res) => {
     }
 })
 
+app.post('/logout', (req, res) => {
+    req.session.destroy();
+    console.log("Logged Out")
+
+});
+
 app.post('/login', (req, res) => {
     console.log(req.body);
     const username = req.body.username;
@@ -102,7 +108,7 @@ app.post('/login', (req, res) => {
                 res.send(result);
             }
             else{
-                res.send({message: "Wrong"})
+                res.send({message: "Wrong username or password combination."})
 
             }
             

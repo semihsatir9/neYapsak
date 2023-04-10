@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #242b38;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
 
 body {
   background: rgb(30,33,36);
-  background: radial-gradient(circle, rgba(30,33,36,1) 0%, rgba(21,21,21,1) 100%);
+  background: radial-gradient(circle, rgb(72, 118, 187) 0%, rgb(2, 4, 7) 100%);
   color: white;
 }
 
@@ -81,6 +81,7 @@ body {
 
 h2 {
   color: white;
+  pointer-events: none;
 }
 
 h6 {
@@ -89,12 +90,13 @@ h6 {
   text-justify: inter-word;
   padding-top: 12px;
   padding-bottom: 4px;
+  pointer-events: none;
 }
 
 button {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: transparent;
-  color: white;
+  color: rgb(247, 247, 247);
   border: 1px solid white;
   padding: 14px 16px;
   text-align: center;
