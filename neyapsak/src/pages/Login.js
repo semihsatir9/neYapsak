@@ -32,10 +32,11 @@ function Login() {
         Axios.post('http://localhost:3001/logout', {
             username: username,
             password: password
-        }).then((response) => {
-
-            
+        }).then((response) => {            
         });
+        window.location.reload(false);
+        
+
     };
 
     useEffect(() => {
