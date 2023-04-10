@@ -58,8 +58,8 @@ app.post('/register', (req, res) => {
                     res.send({ message: "There exists a user with this username." });
                 }
 
-                
-                if(username != "" && password != "") {
+
+                else if(username != "" && password != "") {
                     db.query('INSERT INTO user (username, password) VALUES (?,?)', [username, password],
                         (err, result) => {
                             if (err) {
