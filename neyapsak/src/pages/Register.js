@@ -22,6 +22,14 @@ function Register() {
             password: password
         }).then((response) => {
             console.log(response)
+            if(response.data.message){
+                setStatus(response.data.message)
+                window.location.reload(false);
+            }
+            else{
+                setStatus("Successfully Registered")
+                window.location.reload(false);
+            }
         });
     };
 

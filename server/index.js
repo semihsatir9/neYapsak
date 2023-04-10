@@ -55,9 +55,11 @@ app.post('/register', (req, res) => {
             }
             else {
                 if (result.length > 0) {
-                    res.send({ message2: "There exists a user with this username." });
+                    res.send({ message: "There exists a user with this username." });
                 }
-                else {
+
+                
+                if(username != "" && password != "") {
                     db.query('INSERT INTO user (username, password) VALUES (?,?)', [username, password],
                         (err, result) => {
                             if (err) {
@@ -67,6 +69,8 @@ app.post('/register', (req, res) => {
                             }
 
                         })
+                } else{
+                    res.send({message: "Cannot Register"})
                 }
             }
         }
@@ -102,7 +106,7 @@ app.post('/login', (req, res) => {
                 res.send({err: err});
             }
 
-            if(result.length > 0){
+            if(result.length > 0 ){
                 req.session.user = result;
                 console.log(req.session.user)
                 res.send(result);
