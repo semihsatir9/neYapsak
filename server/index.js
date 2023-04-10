@@ -73,6 +73,14 @@ app.post('/register', (req, res) => {
     )
 });
 
+app.get("/login", (req,res) => {
+    if(req.session.user){
+        res.send({loggedIn: true, user: req.session.user})
+    }else{
+        res.send({loggedIn: false})
+    }
+})
+
 app.post('/login', (req, res) => {
     console.log(req.body);
     const username = req.body.username;
@@ -85,16 +93,19 @@ app.post('/login', (req, res) => {
         "SELECT * FROM user WHERE username = ? AND password = ?", [username, password],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({err: err});
             }
-            else {
-                if (result.length > 0 && password != null && username != "") {
-                    req.session.user = result;
-                    console.log(req.session.user)
-                    res.send({message1: "yes"});
-                }
-                
+
+            if(result.length > 0){
+                req.session.user = result;
+                console.log(req.session.user)
+                res.send(result);
             }
+            else{
+                res.send({message: "Wrong"})
+
+            }
+            
         }
     )
 });

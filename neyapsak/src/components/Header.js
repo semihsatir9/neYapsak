@@ -8,10 +8,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Navigate, useNavigate } from "react-router-dom";
 
   
 export default function Header() {
   return (
+    
       <AppBar position="static">
         <Toolbar>
           {/*Inside the IconButton, we 
@@ -35,6 +37,7 @@ export default function Header() {
             GeeksforGeeks Header
           </Typography>
           <Button color="inherit">Login</Button>
+          <Button color="inherit">Register</Button>
         </Toolbar>
       </AppBar>
   );

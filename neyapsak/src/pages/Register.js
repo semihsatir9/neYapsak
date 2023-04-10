@@ -4,6 +4,9 @@ import {Navigate, useNavigate} from "react-router-dom";
 import { Card } from "react-bootstrap";
 /* Just a heads up */
 
+
+Axios.defaults.withCredentials = true;
+
 function Register() {
     
     
@@ -18,18 +21,7 @@ function Register() {
             username: username,
             password: password
         }).then((response) => {
-            if(response.data.message1){
-                setStatus(response.data.message1);
-                setTimeout(function() {
-                    navigate("/HomePage");
-                  }, 1000);
-            } else if(response.data.message2){
-                setStatus(response.data.message2);
-
-            } else{
-                setStatus("Cannot Register");
-                console.log(response.err);
-            }
+            console.log(response)
         });
     };
 

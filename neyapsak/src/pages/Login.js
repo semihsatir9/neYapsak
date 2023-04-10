@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Axios from 'axios';
 import {useNavigate} from "react-router-dom";
+
+Axios.defaults.withCredentials = true;
 
 function Login() {
 
@@ -15,31 +17,25 @@ function Login() {
             username: username,
             password: password
         }).then((response) => {
-            if(response.data.message1){
-                setStatus(response.data.message1);
-                setTimeout(function() {
-                    navigate("/profileenduser/" + username.toString())
-                  }, 1000);
-                  /*loginBoolean = true;*/
-                
+            if(response.data.message){
+                setStatus(response.data.message)
             }
-            else if(response.data.message2){
-                setStatus(response.data.message2);
-                
-                
-            }else if(response.data.message4){
-                setStatus(response.data.message4);
-                setTimeout(function() {
-                    navigate("/profilecompany/" + username.toString())
-                    
-                  }, 1000);
-                
-            } else{
-                setStatus("Cannot Login");
-                console.log(response.err);
-            }  
+
+            else{
+                setStatus(response.data[0].username)
+            }
+            
         });
     };
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then((response) => {
+            if(response.data.loggedIn == true){
+                setStatus(response.data.user[0].username)
+            }
+        })
+
+    }, [])
 
     return(
             <div className="centered">

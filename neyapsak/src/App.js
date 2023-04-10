@@ -4,8 +4,14 @@ import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from './pages/Login';
 import Register from './pages/Register';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Axios } from 'axios';
+
+
 
 function App() {
+
   return (
 <Router>
                 <div className='App'>
@@ -21,5 +27,7 @@ function App() {
   );
   
 }
+
+
 
 export default App;
