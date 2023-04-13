@@ -11,8 +11,12 @@ function MainPage() {
 
         
 
-        <div>
-            <h6>Welcome</h6>
+        <div className="centered">
+        
+            <h2>Welcome to neYapsak, an Optimal Solution For Your What To Cook Problems!</h2>
+            <h2>In order to use our system, please log in.</h2>
+
+
         </div>
     )
 

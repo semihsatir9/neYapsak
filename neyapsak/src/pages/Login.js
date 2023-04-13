@@ -19,6 +19,10 @@ function Login() {
         }).then((response) => {
             if(response.data.message){
                 setStatus(response.data.message)
+                setTimeout(function() {
+                    window.location.reload(false);
+                    //navigate to main page here
+                  }, 1000);
             }
 
             else{
@@ -34,7 +38,12 @@ function Login() {
             password: password
         }).then((response) => {            
         });
-        window.location.reload(false);
+
+        setTimeout(function() {
+            window.location.reload(false);
+          }, 1000);
+
+        
         
 
     };
@@ -42,7 +51,7 @@ function Login() {
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
-                setStatus(response.data.user[0].username)
+                setStatus("Currently logged in as: " + response.data.user[0].username)
             }
         })
 

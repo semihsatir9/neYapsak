@@ -28,7 +28,10 @@ function Register() {
             }
             else{
                 setStatus("Successfully Registered")
-                window.location.reload(false);
+                setTimeout(function() {
+                    navigate("/login");
+                  }, 1000);
+                
             }
         });
     };
