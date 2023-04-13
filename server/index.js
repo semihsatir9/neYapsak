@@ -37,9 +37,6 @@ const db = mysql.createConnection({
     database: 'neyapsakdb',
 })
 
-db.query(
-    "INSERT INTO user (username, password) VALUES (?,?)", ["userPlaceholder", "passwordPlaceholder"]
-);
 
 app.post('/register', (req, res) => {
     console.log(req.body);
