@@ -27,10 +27,10 @@ function Register() {
                 window.location.reload(false);
             }
             else{
-                setStatus("Successfully Registered")
+                setStatus("Successfully Registered") 
                 setTimeout(function() {
                     navigate("/login");
-                  }, 1000);
+                  }, 5000);
                 
             }
         });
