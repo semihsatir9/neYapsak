@@ -12,6 +12,20 @@ import { Navigate, useNavigate } from "react-router-dom";
 
   
 export default function Header() {
+  let navigate = useNavigate();
+
+  const goToLogin = () => {
+    navigate("/login")
+  }
+
+  const goToRegister = () => {
+    navigate("/register")
+  }
+
+
+
+
+
   return (
     
       <AppBar position="static">
@@ -36,8 +50,8 @@ export default function Header() {
             component="div" sx={{ flexGrow: 1 }}>
             neYapsak
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          <Button color="inherit" onClick={goToLogin}>Login</Button>
+          <Button color="inherit" onClick={goToRegister}>Register</Button>
         </Toolbar>
       </AppBar>
   );
