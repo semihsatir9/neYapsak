@@ -63,8 +63,8 @@ function Login() {
                 <br></br>
                 <h2>Login</h2>
                 <br></br>
-                <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => { setUsername(e.target.value) }} />
-                <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
+                <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => { setUsername(e.target.value) }} required/>
+                <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} required/>
                 <h6>{Status}</h6>
                 <button class="button" onClick={
                     loginUser
