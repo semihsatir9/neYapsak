@@ -119,6 +119,18 @@ h6 {
   pointer-events: none;
 }
 
+.h8{
+
+    color: white;
+    font-size: x-large;
+    text-align: center;
+    text-justify: inter-word;
+    padding-top: 1px;
+    padding-bottom: 4px;
+    pointer-events: none;
+  
+}
+
 
 
 button {

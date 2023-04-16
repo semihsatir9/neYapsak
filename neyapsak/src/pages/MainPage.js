@@ -13,8 +13,8 @@ function MainPage() {
 
         <div className="centered">
         
-            <h2>Welcome to neYapsak, an Optimal Solution For Your What To Cook Problems!</h2>
-            <h2>In order to use our system, please log in.</h2>
+            <div className="h8">Welcome to neYapsak, an Optimal Solution For Your What To Cook Problems!</div>
+            <div className="h8">In order to use our system, please log in.</div>
 
 
         </div>
