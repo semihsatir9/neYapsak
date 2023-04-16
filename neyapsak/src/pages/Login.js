@@ -17,36 +17,24 @@ function Login() {
             username: username,
             password: password
         }).then((response) => {
-            if(response.data.message){
-                setStatus(response.data.message)
+            if(!response.data.message){
+                setStatus("Currently logged in as: " + response.data[0].username)
                 setTimeout(function() {
-                    window.location.reload(false);
+                    navigate("/userpage")
                     //navigate to main page here
                   }, 1000);
             }
 
             else{
-                setStatus(response.data[0].username)
+                setStatus(response.data.message)
+                setTimeout(function() {
+                    setStatus("")
+                  }, 1000);
             }
             
         });
     };
-    const logout = () => {
-        
-        Axios.post('http://localhost:3001/logout', {
-            username: username,
-            password: password
-        }).then((response) => {            
-        });
-
-        setTimeout(function() {
-            window.location.reload(false);
-          }, 1000);
-
-        
-        
-
-    };
+    
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
@@ -70,10 +58,6 @@ function Login() {
                     loginUser
                     }><span>Login</span></button>
                 <br></br><br></br>
-                <button class="button" onClick={
-                    logout
-                    }><span>Logout</span></button>
-                <br></br>
                 </div>
             </div>
 

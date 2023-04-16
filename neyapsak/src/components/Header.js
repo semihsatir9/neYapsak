@@ -22,6 +22,10 @@ export default function Header() {
     navigate("/register")
   }
 
+  const goToUserPage = () => {
+    navigate("/userpage")
+  }
+
   const goToMainPage = () => {
     navigate("/")
   }
@@ -35,6 +39,7 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar>
         <Button color="inherit" onClick={goToMainPage}>Main Page</Button>
+        <Button color="inherit" onClick={goToUserPage}>User Page</Button>
           <Typography variant="h6" 
             component="div" sx={{ flexGrow: 1 }}>
             neYapsak

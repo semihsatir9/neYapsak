@@ -8,6 +8,7 @@ import MainPage from './pages/MainPage';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Axios } from 'axios';
+import UserPage from './pages/UserPage';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" exact element={<MainPage/>}/>
         <Route path="/login" exact element={<Login/>}/>
         <Route path="/register" exact element={<Register/>}/>
+        <Route path="/userpage" exact element={<UserPage/>}/>
 
      </Routes>
      </div>
