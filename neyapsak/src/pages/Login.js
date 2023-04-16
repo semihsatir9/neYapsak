@@ -53,7 +53,7 @@ function Login() {
                 <br></br>
                 <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => { setUsername(e.target.value) }} required/>
                 <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} required/>
-                <h6>{Status}</h6>
+                <h2>{Status}</h2>
                 <button class="button" onClick={
                     loginUser
                     }><span>Login</span></button>

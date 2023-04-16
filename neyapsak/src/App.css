@@ -68,6 +68,14 @@ body {
   margin-right: 24px;
 }
 
+.align-center{
+  text-align: center;
+  float: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-right: 24px;
+}
+
 
 
 .box{

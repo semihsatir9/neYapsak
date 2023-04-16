@@ -33,7 +33,7 @@ function UserPage() {
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
-                setStatus("Currently logged in as: " + response.data.user[0].username)
+                setStatus("Welcome " + response.data.user[0].username)
             }
             else{
                 navigate("/login")
@@ -43,8 +43,10 @@ function UserPage() {
     }, [])
 
     return(
+        
         <div className = "align-left">
-            <div>
+            <h6 className="align-center">{Status}</h6>
+            <div className="align-right ingredientBox">
                 <button className="button" onClick={
                     logout
                     }><span>Logout</span></button>
@@ -59,7 +61,7 @@ function UserPage() {
                 <br></br>
                 <input type = "radio" id = "no" name="supermarketq" value="No"></input>
                 <label for = "nes">No</label><br></br><br></br>
-                <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br>
+                <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br><br></br>
                 <input type = "int" id = "time" name="timeq"></input><br></br><br></br>
                 <label>Q3: What ingredients do you hate?</label><br></br><br></br>
                 <input type = "string" id = "hate" name="hateq"></input><br></br><br></br>
