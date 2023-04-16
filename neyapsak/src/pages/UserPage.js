@@ -50,8 +50,51 @@ function UserPage() {
                     }><span>Logout</span></button>
 
             </div>
-            <div>
+            <div className="align-left">
+                <h6>User Inventory</h6>
                 
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <div className="ingredientBox"> Rice
+                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                </div>
+
+                <button class="button align-right" onClick={
+                    console.log("")
+                    }><span>Update Inventory</span></button>
+
+                
+
             </div>
 
     </div>

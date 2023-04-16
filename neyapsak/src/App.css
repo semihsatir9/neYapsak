@@ -55,6 +55,16 @@ body {
   margin-left: 24px;
 }
 
+.align-right{
+  text-align: right;
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-right: 24px;
+}
+
+
+
 .box{
   width: 340px;
   padding: 2rem;
@@ -82,14 +92,16 @@ body {
 
 h2 {
   color: white;
+  font-size: medium;
   pointer-events: none;
 }
 
 h6 {
   color: white;
+  font-size: x-large;
   text-align: justify;
   text-justify: inter-word;
-  padding-top: 12px;
+  padding-top: 1px;
   padding-bottom: 4px;
   pointer-events: none;
 }
@@ -178,4 +190,16 @@ input[type=number], select {
 
 .display-linebreak{
   margin-top: 20px;
+}
+
+
+.ingredientBox{
+  background-repeat: no-repeat!important;
+  background-position: center!important;
+  background-size: contain!important;
+  padding: 7px;
+  width: 12.5%;
+  text-align: center;
+  display: inline-block;
+  position: relative;
 }
