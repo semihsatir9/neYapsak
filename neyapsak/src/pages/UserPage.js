@@ -49,8 +49,26 @@ function UserPage() {
                     logout
                     }><span>Logout</span></button>
 
+        </div>
+            <div className="align-left">
+                <form>
+                <h6>Optimization</h6>
+                <label>Q1: Do you plan on going to the supermarket?</label><br></br><br></br>
+                <input type = "radio" id = "yes" name="supermarketq" value="Yes"></input>
+                <label for = "yes">Yes</label>
+                <br></br>
+                <input type = "radio" id = "no" name="supermarketq" value="No"></input>
+                <label for = "nes">No</label><br></br><br></br>
+                <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br>
+                <input type = "int" id = "time" name="timeq"></input><br></br><br></br>
+                <label>Q3: What ingredients do you hate?</label><br></br><br></br>
+                <input type = "string" id = "hate" name="hateq"></input><br></br><br></br>
+                <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
+                <input type = "int" id = "cal" name="calq"></input><br></br><br></br>
+                <button className="button align-right"><span>Answer</span></button>
+                </form>
             </div>
-<<<<<<< HEAD
+
             <div className="align-left">
                 <h6>User Inventory</h6>
                 
@@ -94,29 +112,7 @@ function UserPage() {
                     console.log("")
                     }><span>Update Inventory</span></button>
 
-                
-
-=======
-            <br></br><br></br>
-            <div>
-                <form>
-                <span>Optimization</span><br></br><br></br>
-                <label>Q1: Do you plan on going to the supermarket?</label><br></br><br></br>
-                <input type = "radio" id = "yes" name="supermarketq" value="Yes"></input>
-                <label for = "yes">Yes</label>
-                <br></br>
-                <input type = "radio" id = "no" name="supermarketq" value="No"></input>
-                <label for = "nes">No</label><br></br><br></br>
-                <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br>
-                <input type = "int" id = "time" name="timeq"></input><br></br><br></br>
-                <label>Q3: What ingredients do you hate?</label><br></br><br></br>
-                <input type = "string" id = "hate" name="hateq"></input><br></br><br></br>
-                <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
-                <input type = "int" id = "cal" name="calq"></input><br></br><br></br>
-                <button className="button align-right"><span>Answer</span></button>
-                </form>
->>>>>>> Optimization-Front-End
-            </div>
+                </div>
 
     </div>
 
