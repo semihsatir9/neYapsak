@@ -55,6 +55,14 @@ body {
   margin-left: 24px;
 }
 
+.align-right{
+  text-align: right;
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-right: 24px;
+}
+
 .box{
   width: 340px;
   padding: 2rem;
