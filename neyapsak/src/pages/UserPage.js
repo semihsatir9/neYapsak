@@ -66,7 +66,7 @@ function UserPage() {
                 <input type = "string" id = "hate" name="hateq"></input><br></br><br></br>
                 <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
                 <input type = "int" id = "cal" name="calq"></input><br></br><br></br>
-                <button className="align-right"><span>Answer</span></button>
+                <button className="button align-right"><span>Answer</span></button>
                 </form>
             </div>
 
