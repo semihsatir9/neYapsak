@@ -46,7 +46,7 @@ function UserPage() {
         
         <div className = "align-left">
             <h6 className="align-center">{Status}</h6>
-            <div className="align-right ingredientBox">
+            <div className="align-right">
                 <button className="button" onClick={
                     logout
                     }><span>Logout</span></button>
