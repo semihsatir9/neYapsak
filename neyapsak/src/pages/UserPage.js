@@ -10,7 +10,12 @@ function UserPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [Status, setStatus] = useState("");
+    const [ing_rice,setIng_rice] = useState("0");
+    const [ing_tomato,setIng_tomato] = useState("0");
+    const [ing_egg,setIng_egg] = useState("0");
+
     let navigate = useNavigate();
+    let userid;
 
     
     const logout = () => {
@@ -24,19 +29,26 @@ function UserPage() {
         setTimeout(function() {
             navigate("/login")
           }, 1000);
-
-        
-        
-
     };
 
+
+    function updateInventory(){
+        
+
+
+    }
+
     useEffect(() => {
+        
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
-                setStatus("Welcome " + response.data.user[0].username)
+                userid = response.data.user[0].userId;
+                setStatus("Welcome " + response.data.user[0].username + " with ID: " + userid)
+                
             }
             else{
                 navigate("/login")
+                userid = null;
             }
         })
 
@@ -82,40 +94,16 @@ function UserPage() {
             <div className="align-left">
                 <h6>User Inventory</h6>
                 
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                <div className="ingredientBox"> Rice (Grams)
+                <input type="text" name="rice" id="rice" onChange={setIng_rice} required/>
                 </div>
 
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                <div className="ingredientBox"> Tomato (Piece)
+                <input type="text" name="tomato" id="tomato" onChange={setIng_tomato} required/>
                 </div>
 
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
-                </div>
-
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
-                </div>
-
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
-                </div>
-
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
-                </div>
-
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
-                </div>
-
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
-                </div>
-
-                <div className="ingredientBox"> Rice
-                <input type="text" name="rice" id="rice" onChange={(e) => {}} required/>
+                <div className="ingredientBox"> Egg (Piece)
+                <input type="text" name="egg" id="egg" onChange={setIng_egg} required/>
                 </div>
 
                 <button class="button align-right" onClick={
