@@ -107,55 +107,93 @@ app.post('/update_inventory', (req, res) => {
             //rice id 2
 
             db.query(
-                "UPDATE user_inventory SET ingrAmount = '?' WHERE userId = ? and ingrId = 2", [ing_rice,userid],
+                "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 2", [userid],
                 (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        console.log("asd" + userid)
+                    if (err || result.length == 0) {
                         db.query(
                             "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,2,?) ", [userid,ing_rice],
                             (err, result) => {
                                 if (err) {
                                     res.send({err: err});
-                                    console.log("New Rice info Added")  
+                                    console.log("Total failure on rice")  
                                     console.log(err)
                                 }else{
-                                    console.log("Error on Rice")
+                                    console.log("new rice added")
                                 }
                                 
                             }
-                        )
+                        )   
                     }
                     else{
-                        console.log("Rice updated") 
+
+                        db.query(
+                            "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 2", [ing_rice,userid],
+                            (err, result) => {
+                                if (err) {
+                                    console.log(err)
+                                    console.log("Error on updating current rice information.")
+                                }
+                                else{
+                                    console.log("Rice updated") 
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+
+                        
                     }
                       
                     
              
                 }
             )
+            
+            
+            
 
             //tomato id 4
 
             db.query(
-                "UPDATE user_inventory SET ingrAmount = '?' WHERE userId = ? and ingrId = 4", [ing_tomato,userid],
+                "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 4", [userid],
                 (err, result) => {
-                    if (err) {
+                    if (err || result.length == 0) {
                         db.query(
                             "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,4,?) ", [userid,ing_tomato],
                             (err, result) => {
                                 if (err) {
                                     res.send({err: err});
-                                    console.log("New tomato info Added")  
+                                    console.log("Total failure on tomato")  
+                                    console.log(err)
                                 }else{
-                                    console.log("Error on tomato")
+                                    console.log("new tomato added")
                                 }
                                 
                             }
-                        )
+                        )   
                     }
                     else{
-                        console.log("tomato updated") 
+
+                        db.query(
+                            "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 4", [ing_tomato,userid],
+                            (err, result) => {
+                                if (err) {
+                                    console.log(err)
+                                    console.log("Error on updating current tomato information.")
+                                }
+                                else{
+                                    console.log("tomato updated") 
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+
+                        
                     }
                       
                     
@@ -166,24 +204,43 @@ app.post('/update_inventory', (req, res) => {
             //egg id 5
 
             db.query(
-                "UPDATE user_inventory SET ingrAmount = '?' WHERE userId = ? and ingrId = 5", [ing_egg,userid],
+                "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 5", [userid],
                 (err, result) => {
-                    if (err) {
+                    if (err || result.length == 0) {
                         db.query(
                             "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,5,?) ", [userid,ing_egg],
                             (err, result) => {
                                 if (err) {
                                     res.send({err: err});
-                                    console.log("New egg info Added")  
+                                    console.log("Total failure on egg")  
+                                    console.log(err)
                                 }else{
-                                    console.log("Error on egg")
+                                    console.log("new egg added")
                                 }
                                 
                             }
-                        )
+                        )   
                     }
                     else{
-                        console.log("egg updated") 
+
+                        db.query(
+                            "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 5", [ing_egg,userid],
+                            (err, result) => {
+                                if (err) {
+                                    console.log(err)
+                                    console.log("Error on updating current egg information.")
+                                }
+                                else{
+                                    console.log("egg updated") 
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+
+                        
                     }
                       
                     

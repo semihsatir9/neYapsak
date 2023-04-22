@@ -11,12 +11,15 @@ function UserPage() {
     const [password, setPassword] = useState("");
     const [inventoryStatus, setInventoryStatus] = useState("");
     const [Status, setStatus] = useState("");
-    const [ing_rice,setIng_rice] = useState("0");
-    const [ing_tomato,setIng_tomato] = useState("0");
-    const [ing_egg,setIng_egg] = useState("0");
+    const [ing_rice,setIng_rice] = useState("");
+    const [ing_tomato,setIng_tomato] = useState("");
+    const [ing_egg,setIng_egg] = useState("");
+    const [userid,setUserid] = useState("");
+
+    let useridtitle;
 
     let navigate = useNavigate();
-    let userid;
+    
 
     
     const logout = () => {
@@ -37,6 +40,11 @@ function UserPage() {
 
         if(ing_egg == "" || ing_tomato == "" || ing_rice == ""){
             setInventoryStatus("Fill all the ingredient data.")
+            setTimeout(function() {
+                setInventoryStatus("")
+              }, 1000);
+
+
 
         }
         else{
@@ -51,15 +59,15 @@ function UserPage() {
             //Will update the inventory. Response is the table that is filled with the
             //updated values
 
-            setInventoryStatus("Data updated.")
+            
+        });
+        setInventoryStatus("Data updated.")
 
             setTimeout(function() {
-                window.location.reload(false);
+                setInventoryStatus("")
               }, 1000);
 
 
-
-        });
         
     }
 
@@ -70,8 +78,9 @@ function UserPage() {
         
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
-                userid = response.data.user[0].userId;
-                setStatus("Welcome " + response.data.user[0].username + " with ID: " + userid)
+                setUserid(response.data.user[0].userId)
+                useridtitle = response.data.user[0].userId
+                setStatus("Welcome " + response.data.user[0].username + " with ID: " + useridtitle)
                 
             }
             else{
