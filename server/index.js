@@ -118,18 +118,18 @@ app.post('/login', (req, res) => {
 
 });
     
-    app.post('/initialize', (req, res) => {
+app.post('/initialize', (req, res) => {
         console.log(req.body);
-        const userId = req.body.userId;
+        const userid = req.body.userId;
 
         //Query for intializing inventory.
         db.query(
-            "select * from user_inventory where userId = ?" [userId],
+            "select * from user_inventory where userId = ?", [userid],
             (err, result) => {
                 if(err) {
                     res.send({err: err});
                 } else {
-                    console.log.result(send);
+                    console.log(result);
                     res.send(result);
                 }
 
@@ -138,7 +138,7 @@ app.post('/login', (req, res) => {
             }
         )
 
-    })
+    });
 
 app.listen(3001, ()=> {
     console.log("Server is running on port 3001!");

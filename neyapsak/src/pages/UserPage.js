@@ -39,10 +39,11 @@ function UserPage() {
     }
 
     function initializeInventory(){
-        Axios.get("http://localhost:3001/initialize", {
-            userId: userid
+        Axios.post("http://localhost:3001/initialize", {
+            userid: userid
         }).then((response) => {
-            
+            setStatus(response.data)
+            console.log(response.data[0]);
         });
     }
 
@@ -51,7 +52,7 @@ function UserPage() {
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
                 userid = response.data.user[0].userId;
-                initializeInventory();
+
                 setStatus("Welcome " + response.data.user[0].username + " with ID: " + userid)
                 
             }
@@ -66,7 +67,7 @@ function UserPage() {
     return(
         
         <div className = "align-left">
-            <h6 className="align-center">{ing_rice}</h6>
+            <h6 className="align-center">{Status}</h6>
             <div className="align-right">
                 <button className="button" onClick={
                     logout
@@ -116,7 +117,7 @@ function UserPage() {
                 </div>
 
                 <button class="button align-right" onClick={
-                    console.log("")
+                    initializeInventory
                     }><span>Update Inventory</span></button>
 
                 </div>
