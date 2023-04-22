@@ -13,9 +13,11 @@ function UserPage() {
     const [ing_rice,setIng_rice] = useState("0");
     const [ing_tomato,setIng_tomato] = useState("0");
     const [ing_egg,setIng_egg] = useState("0");
+    const [userid,setUserid] = useState("");
 
     let navigate = useNavigate();
-    let userid;
+    let useridtitle;
+
 
     
     const logout = () => {
@@ -43,7 +45,7 @@ function UserPage() {
             userid: userid
         }).then((response) => {
             setStatus(response.data)
-            console.log(response.data[0]);
+            console.log(response.data.user_inventory.ingrAmount[0]);
         });
     }
 
@@ -51,9 +53,9 @@ function UserPage() {
         
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
-                userid = response.data.user[0].userId;
-
-                setStatus("Welcome " + response.data.user[0].username + " with ID: " + userid)
+                setUserid(response.data.user[0].userId)
+                useridtitle = response.data.user[0].userId
+                setStatus("Welcome " + response.data.user[0].username + " with ID: " + useridtitle)
                 
             }
             else{
