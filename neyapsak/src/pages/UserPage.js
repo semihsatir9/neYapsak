@@ -9,6 +9,7 @@ function UserPage() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [inventoryStatus, setInventoryStatus] = useState("");
     const [Status, setStatus] = useState("");
     const [ing_rice,setIng_rice] = useState("0");
     const [ing_tomato,setIng_tomato] = useState("0");
@@ -33,7 +34,34 @@ function UserPage() {
 
 
     function updateInventory(){
+
+        if(ing_egg == "" || ing_tomato == "" || ing_rice == ""){
+            setInventoryStatus("Fill all the ingredient data.")
+
+        }
+        else{
+
+        Axios.post('http://localhost:3001/update_inventory', {
+            username: username,
+            userid: userid,
+            ing_rice: ing_rice,
+            ing_tomato: ing_tomato,
+            ing_egg: ing_egg
+        }).then((response) => {
+            //Will update the inventory. Response is the table that is filled with the
+            //updated values
+
+            setInventoryStatus("Data updated.")
+
+            setTimeout(function() {
+                window.location.reload(false);
+              }, 1000);
+
+
+
+        });
         
+    }
 
 
     }
@@ -48,9 +76,10 @@ function UserPage() {
             }
             else{
                 navigate("/login")
-                userid = null;
             }
         })
+
+
 
     }, [])
 
@@ -93,21 +122,22 @@ function UserPage() {
 
             <div className="align-left">
                 <h6>User Inventory</h6>
-                
                 <div className="ingredientBox"> Rice (Grams)
-                <input type="text" name="rice" id="rice" onChange={setIng_rice} required/>
+                <input type="text" name="rice" id="rice" onChange={(e) => { setIng_rice(e.target.value) }} required/>
                 </div>
 
                 <div className="ingredientBox"> Tomato (Piece)
-                <input type="text" name="tomato" id="tomato" onChange={setIng_tomato} required/>
+                <input type="text" name="tomato" id="tomato" onChange={(e) => { setIng_tomato(e.target.value) }} required/>
                 </div>
 
                 <div className="ingredientBox"> Egg (Piece)
-                <input type="text" name="egg" id="egg" onChange={setIng_egg} required/>
+                <input type="text" name="egg" id="egg" onChange={(e) => { setIng_egg(e.target.value) }} required/>
                 </div>
 
+                <h2>{inventoryStatus}</h2>
+
                 <button class="button align-right" onClick={
-                    console.log("")
+                    updateInventory
                     }><span>Update Inventory</span></button>
 
                 </div>

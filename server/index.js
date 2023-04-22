@@ -88,6 +88,115 @@ app.post('/logout', (req, res) => {
 
 });
 
+app.post('/update_inventory', (req, res) => {
+    const ing_rice = req.body.ing_rice;
+    const ing_tomato = req.body.ing_tomato;
+    const ing_egg = req.body.ing_egg;
+    const username = req.body.username;
+    const userid = req.body.userid;
+    
+    db.query(
+        "SELECT * FROM user_inventory where userID = ?", [userid],
+        (err, result) => {
+            if (err) {
+                console.log("Error on select user")
+                res.send({err: err});
+                
+            }
+
+            //rice id 2
+
+            db.query(
+                "UPDATE user_inventory SET ingrAmount = '?' WHERE userId = ? and ingrId = 2", [ing_rice,userid],
+                (err, result) => {
+                    if (err) {
+                        console.log(err)
+                        console.log("asd" + userid)
+                        db.query(
+                            "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,2,?) ", [userid,ing_rice],
+                            (err, result) => {
+                                if (err) {
+                                    res.send({err: err});
+                                    console.log("New Rice info Added")  
+                                    console.log(err)
+                                }else{
+                                    console.log("Error on Rice")
+                                }
+                                
+                            }
+                        )
+                    }
+                    else{
+                        console.log("Rice updated") 
+                    }
+                      
+                    
+             
+                }
+            )
+
+            //tomato id 4
+
+            db.query(
+                "UPDATE user_inventory SET ingrAmount = '?' WHERE userId = ? and ingrId = 4", [ing_tomato,userid],
+                (err, result) => {
+                    if (err) {
+                        db.query(
+                            "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,4,?) ", [userid,ing_tomato],
+                            (err, result) => {
+                                if (err) {
+                                    res.send({err: err});
+                                    console.log("New tomato info Added")  
+                                }else{
+                                    console.log("Error on tomato")
+                                }
+                                
+                            }
+                        )
+                    }
+                    else{
+                        console.log("tomato updated") 
+                    }
+                      
+                    
+             
+                }
+            )
+
+            //egg id 5
+
+            db.query(
+                "UPDATE user_inventory SET ingrAmount = '?' WHERE userId = ? and ingrId = 5", [ing_egg,userid],
+                (err, result) => {
+                    if (err) {
+                        db.query(
+                            "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,5,?) ", [userid,ing_egg],
+                            (err, result) => {
+                                if (err) {
+                                    res.send({err: err});
+                                    console.log("New egg info Added")  
+                                }else{
+                                    console.log("Error on egg")
+                                }
+                                
+                            }
+                        )
+                    }
+                    else{
+                        console.log("egg updated") 
+                    }
+                      
+                    
+             
+                }
+            )
+  
+        }
+    )
+    
+
+});
+
 app.post('/login', (req, res) => {
     console.log(req.body);
     const username = req.body.username;
