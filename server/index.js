@@ -115,8 +115,30 @@ app.post('/login', (req, res) => {
             
         }
     )
-});
 
+});
+    
+    app.post('/initialize', (req, res) => {
+        console.log(req.body);
+        const userId = req.body.userId;
+
+        //Query for intializing inventory.
+        db.query(
+            "select * from user_inventory where userId = ?" [userId],
+            (err, result) => {
+                if(err) {
+                    res.send({err: err});
+                } else {
+                    console.log.result(send);
+                    res.send(result);
+                }
+
+
+                
+            }
+        )
+
+    })
 
 app.listen(3001, ()=> {
     console.log("Server is running on port 3001!");
