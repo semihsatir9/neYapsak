@@ -47,19 +47,17 @@ function UserPage() {
             setIng_rice(response.data[0].ingrAmount);
             setIng_tomato(response.data[1].ingrAmount);
             setIng_egg(response.data[2].ingrAmount);
-            console.log(response.data[2].ingrAmount);
         });
     }
 
     useEffect(() => {
-        fetch('/initialize')
-        .then(response => response.json())
-
+        
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
                 setUserid(response.data.user[0].userId)
                 useridtitle = response.data.user[0].userId
                 setStatus("Welcome " + response.data.user[0].username + " with ID: " + useridtitle)
+                
                 
             }
             else{
@@ -70,6 +68,8 @@ function UserPage() {
 
     }, [])
 
+    window.onload = initializeInventory();
+    
     return(
         
         <div className = "align-left">
@@ -80,7 +80,7 @@ function UserPage() {
                     }><span>Logout</span></button>
 
         </div>
-            <div className="align-left">
+            <div className="align-left" >
                 <form>
                 <h6>Optimization</h6>
                 <label>Q1: Do you plan on going to the supermarket?</label><br></br><br></br>
@@ -107,26 +107,25 @@ function UserPage() {
                 </form>
             </div>
 
+            
             <div className="align-left">
                 <h6>User Inventory</h6>
-                
                 <div className="ingredientBox"> Rice (Grams)
-                <input type="text" name="rice" id="rice" onChange={setIng_rice} required/>
+                <input type="text" name="rice" id="rice" value={ing_rice} onChange={setIng_rice} required/>
                 </div>
 
                 <div className="ingredientBox"> Tomato (Piece)
-                <input type="text" name="tomato" id="tomato" onChange={setIng_tomato} required/>
+                <input type="text" name="tomato" id="tomato" value={ing_tomato} onChange={setIng_tomato} required/>
                 </div>
 
                 <div className="ingredientBox"> Egg (Piece)
-                <input type="text" name="egg" id="egg" onChange={setIng_egg} required/>
+                <input type="text" name="egg" id="egg" value={ing_egg} onChange={setIng_egg} required/>
                 </div>
 
-                <button class="button align-right" onClick={
-                    initializeInventory
-                    }><span>Update Inventory</span></button>
+                <button class="button align-right"><span>Update Inventory</span></button>
 
                 </div>
+            
 
     </div>
 
