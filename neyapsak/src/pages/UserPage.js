@@ -75,24 +75,26 @@ function UserPage() {
 
     }
 
-    function initializeInventory(){
+    function initializeInventory(userid){
         Axios.post("http://localhost:3001/initialize", {
-            userId: userid
+            userid: userid
         }).then((response) => {
+            console.log(userid);
+            console.log(response);
             setIng_rice(response.data[0].ingrAmount);
             setIng_tomato(response.data[1].ingrAmount);
             setIng_egg(response.data[2].ingrAmount);
+
         });
     }
     
     useEffect(() => {
-        
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
                 setUserid(response.data.user[0].userId)
                 useridtitle = response.data.user[0].userId
+                initializeInventory(response.data.user[0].userId);
                 setStatus("Welcome " + response.data.user[0].username + " with ID: " + useridtitle)
-                
                 
             }
             else{
@@ -100,12 +102,9 @@ function UserPage() {
             }
         })
 
-        initializeInventory();
+        
         
     }, [])
-
-    
-    
     return(
         
         <div className = "align-left">

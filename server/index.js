@@ -284,10 +284,10 @@ app.post('/login', (req, res) => {
 
 });
     
-app.get('/initialize', (req, res) => {
+app.post('/initialize', (req, res) => {
         console.log(req.body);
         const sql = "Select * from user_inventory where userId = ?"
-        const userid = req.body.userId;
+        const userid = req.body.userid;
 
         //Query for intializing inventory.
         db.query(
