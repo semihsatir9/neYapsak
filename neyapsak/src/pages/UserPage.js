@@ -9,6 +9,7 @@ function UserPage() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [inventoryStatus, setInventoryStatus] = useState("");
     const [Status, setStatus] = useState("");
     const [ing_rice,setIng_rice] = useState("0");
     const [ing_tomato,setIng_tomato] = useState("0");
@@ -18,6 +19,8 @@ function UserPage() {
     let navigate = useNavigate();
     let useridtitle;
 
+
+    
 
     
     const logout = () => {
@@ -35,7 +38,39 @@ function UserPage() {
 
 
     function updateInventory(){
+
+        if(ing_egg == "" || ing_tomato == "" || ing_rice == ""){
+            setInventoryStatus("Fill all the ingredient data.")
+            setTimeout(function() {
+                setInventoryStatus("")
+              }, 1000);
+
+
+
+        }
+        else{
+
+        Axios.post('http://localhost:3001/update_inventory', {
+            username: username,
+            userid: userid,
+            ing_rice: ing_rice,
+            ing_tomato: ing_tomato,
+            ing_egg: ing_egg
+        }).then((response) => {
+            //Will update the inventory. Response is the table that is filled with the
+            //updated values
+
+            
+        });
+        setInventoryStatus("Data updated.")
+
+            setTimeout(function() {
+                setInventoryStatus("")
+              }, 1000);
+
+
         
+    }
 
 
     }
@@ -49,7 +84,7 @@ function UserPage() {
             setIng_egg(response.data[2].ingrAmount);
         });
     }
-
+    
     useEffect(() => {
         
         Axios.get("http://localhost:3001/login").then((response) => {
@@ -62,13 +97,14 @@ function UserPage() {
             }
             else{
                 navigate("/login")
-                userid = null;
             }
         })
 
+        initializeInventory();
+        
     }, [])
 
-    window.onload = initializeInventory();
+    
     
     return(
         
@@ -111,18 +147,22 @@ function UserPage() {
             <div className="align-left">
                 <h6>User Inventory</h6>
                 <div className="ingredientBox"> Rice (Grams)
-                <input type="text" name="rice" id="rice" value={ing_rice} onChange={setIng_rice} required/>
+                <input type="text" name="rice" id="rice" value={ing_rice} onChange={(e) => { setIng_rice(e.target.value) }} required/>
                 </div>
 
                 <div className="ingredientBox"> Tomato (Piece)
-                <input type="text" name="tomato" id="tomato" value={ing_tomato} onChange={setIng_tomato} required/>
+                <input type="text" name="tomato" id="tomato" value={ing_tomato} onChange={(e) => { setIng_tomato(e.target.value) }} required/>
                 </div>
 
                 <div className="ingredientBox"> Egg (Piece)
-                <input type="text" name="egg" id="egg" value={ing_egg} onChange={setIng_egg} required/>
+                <input type="text" name="egg" id="egg" value={ing_egg} onChange={(e) => { setIng_egg(e.target.value) }} required/>
                 </div>
 
-                <button class="button align-right"><span>Update Inventory</span></button>
+                <h2>{inventoryStatus}</h2>
+
+                <button class="button align-right" onClick={
+                    updateInventory
+                    }><span>Update Inventory</span></button>
 
                 </div>
             
