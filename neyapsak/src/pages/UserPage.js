@@ -42,15 +42,19 @@ function UserPage() {
 
     function initializeInventory(){
         Axios.post("http://localhost:3001/initialize", {
-            userid: userid
+            userId: userid
         }).then((response) => {
-            setStatus(response.data)
-            console.log(response.data.user_inventory.ingrAmount[0]);
+            setIng_rice(response.data[0].ingrAmount);
+            setIng_tomato(response.data[1].ingrAmount);
+            setIng_egg(response.data[2].ingrAmount);
+            console.log(response.data[2].ingrAmount);
         });
     }
 
     useEffect(() => {
-        
+        fetch('/initialize')
+        .then(response => response.json())
+
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn == true){
                 setUserid(response.data.user[0].userId)

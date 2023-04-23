@@ -118,13 +118,14 @@ app.post('/login', (req, res) => {
 
 });
     
-app.post('/initialize', (req, res) => {
+app.get('/initialize', (req, res) => {
         console.log(req.body);
+        const sql = "Select * from user_inventory where userId = ?"
         const userid = req.body.userId;
 
         //Query for intializing inventory.
         db.query(
-            "select * from user_inventory where userId = ?", [userid],
+            sql, [userid],
             (err, result) => {
                 if(err) {
                     res.send({err: err});
