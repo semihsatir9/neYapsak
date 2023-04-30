@@ -228,3 +228,7 @@ input[type=number], select {
   display: inline-block;
   position: relative;
 }
+
+.inlineBlock{
+  display: inline-block;
+}
