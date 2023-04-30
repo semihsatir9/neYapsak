@@ -14,6 +14,17 @@ function UserPage() {
     const [ing_rice,setIng_rice] = useState("0");
     const [ing_tomato,setIng_tomato] = useState("0");
     const [ing_egg,setIng_egg] = useState("0");
+    const [ing_butter,setIng_butter] = useState("0");
+    const [ing_garlic,setIng_garlic] = useState("0");
+    const [ing_chicken,setIng_chicken] = useState("0");
+    const [ing_milk,setIng_milk] = useState("0");
+    const [ing_onion,setIng_onion] = useState("0");
+    const [ing_meat,setIng_meat] = useState("0");
+    const [ing_carrot,setIng_carrot] = useState("0");
+    const [ing_potato,setIng_potato] = useState("0");
+    const [ing_bean,setIng_bean] = useState("0");
+    const [ing_pasta,setIng_pasta] = useState("0");
+    const [ing_cheese,setIng_cheese] = useState("0");
     const [userid,setUserid] = useState("");
 
     let navigate = useNavigate();
@@ -55,7 +66,18 @@ function UserPage() {
             userid: userid,
             ing_rice: ing_rice,
             ing_tomato: ing_tomato,
-            ing_egg: ing_egg
+            ing_egg: ing_egg,
+            ing_butter: ing_butter,
+            ing_garlic: ing_garlic,
+            ing_chicken: ing_chicken,
+            ing_milk: ing_milk,
+            ing_onion: ing_onion,
+            ing_carrot: ing_carrot,
+            ing_meat: ing_meat,
+            ing_potato: ing_potato,
+            ing_bean: ing_bean,
+            ing_pasta: ing_pasta,
+            ing_cheese: ing_cheese
         }).then((response) => {
             //Will update the inventory. Response is the table that is filled with the
             //updated values
@@ -155,6 +177,50 @@ function UserPage() {
 
                 <div className="ingredientBox"> Egg (Piece)
                 <input type="text" name="egg" id="egg" value={ing_egg} onChange={(e) => { setIng_egg(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Butter (Grams)
+                <input type="text" name="butter" id="butter" value={ing_butter} onChange={(e) => { setIng_butter(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Garlic (Clove)
+                <input type="text" name="garlic" id="garlic" value={ing_garlic} onChange={(e) => { setIng_garlic(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Chicken (Grams)
+                <input type="text" name="chicken" id="chicken" value={ing_chicken} onChange={(e) => { setIng_chicken(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Milk (Mililiters)
+                <input type="text" name="milk" id="milk" value={ing_milk} onChange={(e) => { setIng_milk(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Onion (Piece)
+                <input type="text" name="onion" id="onion" value={ing_onion} onChange={(e) => { setIng_onion(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Carrot (Piece)
+                <input type="text" name="carrot" id="carrot" value={ing_carrot} onChange={(e) => { setIng_carrot(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Meat (Grams)
+                <input type="text" name="meat" id="meat" value={ing_meat} onChange={(e) => { setIng_meat(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Potato (Piece)
+                <input type="text" name="potato" id="potato" value={ing_potato} onChange={(e) => { setIng_potato(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Bean (Grams)
+                <input type="text" name="bean" id="bean" value={ing_bean} onChange={(e) => { setIng_bean(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Pasta (Grams)
+                <input type="text" name="pasta" id="pasta" value={ing_pasta} onChange={(e) => { setIng_pasta(e.target.value) }} required/>
+                </div>
+
+                <div className="ingredientBox"> Cheese (Grams)
+                <input type="text" name="cheese" id="cheese" value={ing_cheese} onChange={(e) => { setIng_cheese(e.target.value) }} required/>
                 </div>
 
                 <h2>{inventoryStatus}</h2>

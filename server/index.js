@@ -92,6 +92,20 @@ app.post('/update_inventory', (req, res) => {
     const ing_rice = req.body.ing_rice;
     const ing_tomato = req.body.ing_tomato;
     const ing_egg = req.body.ing_egg;
+    const ing_butter = req.body.ing_butter;
+    const ing_garlic = req.body.ing_garlic;
+    const ing_chicken = req.body.ing_chicken;
+    const ing_milk = req.body.ing_milk;
+    const ing_onion = req.body.ing_onion;
+    const ing_carrot = req.body.ing_carrot;
+    const ing_meat = req.body.ing_meat;
+    const ing_potato = req.body.ing_potato;
+    const ing_bean = req.body.ing_bean;
+    const ing_pasta = req.body.ing_pasta;
+    const ing_cheese = req.body.ing_cheese;
+
+
+
     const username = req.body.username;
     const userid = req.body.userid;
     
@@ -247,6 +261,525 @@ app.post('/update_inventory', (req, res) => {
              
                 }
             )
+
+            //butter id 6
+
+            db.query(
+                "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 6", [userid],
+                (err, result) => {
+                    if (err || result.length == 0) {
+                        db.query(
+                            "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,6,?) ", [userid,ing_butter],
+                            (err, result) => {
+                                if (err) {
+                                    res.send({err: err});
+                                    console.log("Total failure on butter")  
+                                    console.log(err)
+                                }else{
+                                    console.log("new butter added")
+                                }
+                                
+                            }
+                        )   
+                    }
+                    else{
+
+                        db.query(
+                            "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 6", [ing_butter,userid],
+                            (err, result) => {
+                                if (err) {
+                                    console.log(err)
+                                    console.log("Error on updating current butter information.")
+                                }
+                                else{
+                                    console.log("butter updated") 
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+
+                        
+                    }
+                      
+                    
+             
+                }
+            )
+
+            //garlic id 7
+
+            db.query(
+                "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 7", [userid],
+                (err, result) => {
+                    if (err || result.length == 0) {
+                        db.query(
+                            "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,7,?) ", [userid,ing_garlic],
+                            (err, result) => {
+                                if (err) {
+                                    res.send({err: err});
+                                    console.log("Total failure on garlic")  
+                                    console.log(err)
+                                }else{
+                                    console.log("new garlic added")
+                                }
+                                
+                            }
+                        )   
+                    }
+                    else{
+
+                        db.query(
+                            "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 7", [ing_garlic,userid],
+                            (err, result) => {
+                                if (err) {
+                                    console.log(err)
+                                    console.log("Error on updating current garlic information.")
+                                }
+                                else{
+                                    console.log("garlic updated") 
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //chicken id 8
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 8", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,8,?) ", [userid,ing_chicken],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on chicken")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new chicken added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 8", [ing_chicken,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current chicken information.")
+                                            }
+                                            else{
+                                                console.log("chicken updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //milk id 9
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 9", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,9,?) ", [userid,ing_milk],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on milk")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new milk added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 9", [ing_milk,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current milk information.")
+                                            }
+                                            else{
+                                                console.log("milk updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //onion id 10
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 10", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,10,?) ", [userid,ing_onion],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on onion")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new onion added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 10", [ing_onion,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current onion information.")
+                                            }
+                                            else{
+                                                console.log("onion updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //carrot id 11
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 11", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,11,?) ", [userid,ing_carrot],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on carrot")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new carrot added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 11", [ing_carrot,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current carrot information.")
+                                            }
+                                            else{
+                                                console.log("carrot updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //meat id 12
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 12", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,12,?) ", [userid,ing_meat],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on meat")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new meat added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 12", [ing_meat,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current meat information.")
+                                            }
+                                            else{
+                                                console.log("meat updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //potato id 13
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 13", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,13,?) ", [userid,ing_potato],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on potato")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new potato added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 13", [ing_potato,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current potato information.")
+                                            }
+                                            else{
+                                                console.log("potato updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //bean id 14
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 14", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,14,?) ", [userid,ing_bean],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on bean")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new bean added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 14", [ing_bean,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current bean information.")
+                                            }
+                                            else{
+                                                console.log("bean updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //pasta id 15
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 15", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,15,?) ", [userid,ing_pasta],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on pasta")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new pasta added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 15", [ing_pasta,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current pasta information.")
+                                            }
+                                            else{
+                                                console.log("pasta updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+                        //cheese id 16
+
+                        db.query(
+                            "SELECT * FROM user_inventory WHERE userId = ? and ingrId = 16", [userid],
+                            (err, result) => {
+                                if (err || result.length == 0) {
+                                    db.query(
+                                        "INSERT INTO user_inventory (userId, ingrId, ingrAmount) VALUES (?,16,?) ", [userid,ing_cheese],
+                                        (err, result) => {
+                                            if (err) {
+                                                res.send({err: err});
+                                                console.log("Total failure on cheese")  
+                                                console.log(err)
+                                            }else{
+                                                console.log("new cheese added")
+                                            }
+                                            
+                                        }
+                                    )   
+                                }
+                                else{
+            
+                                    db.query(
+                                        "UPDATE user_inventory SET ingrAmount = ? WHERE userId = ? and ingrId = 16", [ing_cheese,userid],
+                                        (err, result) => {
+                                            if (err) {
+                                                console.log(err)
+                                                console.log("Error on updating current cheese information.")
+                                            }
+                                            else{
+                                                console.log("cheese updated") 
+                                            }
+                                              
+                                            
+                                     
+                                        }
+                                    )
+            
+            
+                                    
+                                }
+                                  
+                                
+                         
+                            }
+                        )
+
+
+                        
+                    }
+                      
+                    
+             
+                }
+            )
+
+
   
         }
     )
