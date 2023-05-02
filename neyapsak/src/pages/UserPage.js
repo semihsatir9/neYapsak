@@ -106,7 +106,17 @@ function UserPage() {
             setIng_rice(response.data[0].ingrAmount);
             setIng_tomato(response.data[1].ingrAmount);
             setIng_egg(response.data[2].ingrAmount);
-
+            setIng_butter(response.data[3].ingrAmount);
+            setIng_garlic(response.data[4].ingrAmount);
+            setIng_chicken(response.data[5].ingrAmount);
+            setIng_milk(response.data[6].ingrAmount);
+            setIng_onion(response.data[7].ingrAmount);
+            setIng_carrot(response.data[8].ingrAmount);
+            setIng_meat(response.data[9].ingrAmount);
+            setIng_potato(response.data[10].ingrAmount);
+            setIng_bean(response.data[11].ingrAmount);
+            setIng_pasta(response.data[12].ingrAmount);
+            setIng_cheese(response.data[13].ingrAmount);
         });
     }
     
@@ -187,11 +197,11 @@ function UserPage() {
                 <input type="text" name="rice" id="rice" value={ing_rice} onChange={(e) => { setIng_rice(e.target.value) }} required/>
                 </div>
 
-                <div className="ingredientBox"> Tomato (Piece)
+                <div className="ingredientBox"> Tomato (#)
                 <input type="text" name="tomato" id="tomato" value={ing_tomato} onChange={(e) => { setIng_tomato(e.target.value) }} required/>
                 </div>
 
-                <div className="ingredientBox"> Egg (Piece)
+                <div className="ingredientBox"> Egg (#)
                 <input type="text" name="egg" id="egg" value={ing_egg} onChange={(e) => { setIng_egg(e.target.value) }} required/>
                 </div>
 
@@ -211,11 +221,11 @@ function UserPage() {
                 <input type="text" name="milk" id="milk" value={ing_milk} onChange={(e) => { setIng_milk(e.target.value) }} required/>
                 </div>
 
-                <div className="ingredientBox"> Onion (Piece)
+                <div className="ingredientBox"> Onion (#)
                 <input type="text" name="onion" id="onion" value={ing_onion} onChange={(e) => { setIng_onion(e.target.value) }} required/>
                 </div>
 
-                <div className="ingredientBox"> Carrot (Piece)
+                <div className="ingredientBox"> Carrot (#)
                 <input type="text" name="carrot" id="carrot" value={ing_carrot} onChange={(e) => { setIng_carrot(e.target.value) }} required/>
                 </div>
 
@@ -223,7 +233,7 @@ function UserPage() {
                 <input type="text" name="meat" id="meat" value={ing_meat} onChange={(e) => { setIng_meat(e.target.value) }} required/>
                 </div>
 
-                <div className="ingredientBox"> Potato (Piece)
+                <div className="ingredientBox"> Potato (#)
                 <input type="text" name="potato" id="potato" value={ing_potato} onChange={(e) => { setIng_potato(e.target.value) }} required/>
                 </div>
 
