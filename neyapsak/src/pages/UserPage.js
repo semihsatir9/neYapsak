@@ -26,9 +26,12 @@ function UserPage() {
     const [ing_pasta,setIng_pasta] = useState("0");
     const [ing_cheese,setIng_cheese] = useState("0");
     const [userid,setUserid] = useState("");
+    
 
     let navigate = useNavigate();
     let useridtitle;
+    let recipeids = [];
+    
 
 
     
@@ -101,7 +104,7 @@ function UserPage() {
         Axios.post("http://localhost:3001/initialize", {
             userid: userid
         }).then((response) => {
-            console.log(userid);
+            console.log("User id: " +userid);
             console.log(response);
             setIng_rice(response.data[0].ingrAmount);
             setIng_tomato(response.data[1].ingrAmount);
@@ -137,6 +140,22 @@ function UserPage() {
         
         
     }, [])
+
+        //This is the start of the whole recipe creation plan
+        Axios.post("http://localhost:3001/getrecipeids", {
+        }).then((response) => {
+            recipeids = []
+            for(let i = 0; i < response.data.length; i++){
+                recipeids.push(response.data[i].recipeID)
+            }
+            console.log(recipeids)
+            
+        });
+
+    
+
+
+
     return(
         
         <div className = "align-left">

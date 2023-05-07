@@ -782,12 +782,28 @@ app.post('/update_inventory', (req, res) => {
 
   
         }
-    )
-    
+    )   
 
 });
 
-app.post('/login', (req, res) => {
+    //end of update inventory
+
+    app.post('/getrecipeids', (req, res) => {
+        console.log(req.body);
+        db.query(
+            "SELECT * FROM recipe",
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                }
+                else{
+                    res.send(result)
+                }
+            }
+        )
+    });
+
+    app.post('/login', (req, res) => {
     console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;
