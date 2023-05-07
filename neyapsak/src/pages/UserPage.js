@@ -31,6 +31,7 @@ function UserPage() {
     let navigate = useNavigate();
     let useridtitle;
     let recipeids = [];
+    let ingredients;
     
 
 
@@ -48,6 +49,33 @@ function UserPage() {
         setTimeout(function() {
             navigate("/login")
           }, 1000);
+    };
+
+    function getCaloriesTotal(id){
+        var totalCalories = 0;
+        Axios.post('http://localhost:3001/getrecipeingredients', {
+            id: id
+        }).then((response) => {
+            //console.log(response)
+            //console.log("ID: " + id)
+
+            Axios.post("http://localhost:3001/getingredients", {
+        }).then((responsee) => {
+            //console.log("Ingredient information have been taken from the database.")
+            for(let i = 0; i < response.data.length; i++){
+                //console.log("First loop")
+                for(let j = 0; j < responsee.data.length; j++){
+                    //console.log("Second Loop")
+                    if(response.data[i].ingredientId == responsee.data[j].ingrId){
+                        totalCalories += (responsee.data[j].calories) * (response.data[i].amount)
+                        //console.log("Total calories added by id " + j)
+                    }
+                    
+                }
+            }
+            return "5";
+        });
+        });
     };
 
 
@@ -151,6 +179,13 @@ function UserPage() {
             console.log(recipeids)
             
         });
+
+        function getcal(){
+            console.log(getCaloriesTotal(1));
+        }
+
+        
+
 
     
 
@@ -273,6 +308,9 @@ function UserPage() {
                 <button class="button align-right" onClick={
                     updateInventory
                     }><span>Update Inventory</span></button>
+                <button class="button align-right" onClick={
+                    getcal
+                    }><span>testcal</span></button>
 
                 </div>
             

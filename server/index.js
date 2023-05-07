@@ -803,6 +803,36 @@ app.post('/update_inventory', (req, res) => {
         )
     });
 
+    app.post('/getingredients', (req, res) => {
+        console.log(req.body);
+        db.query(
+            "SELECT * FROM ingredient",
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                }
+                else{
+                    res.send(result)
+                }
+            }
+        )
+    });
+
+    app.post('/getrecipeingredients', (req, res) => {
+        const id = req.body.id
+        db.query(
+            "SELECT * FROM recipe_ingredient WHERE recipeID = ?",[id],
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                }
+                else{
+                    res.send(result)
+                }
+            }
+        )
+    });
+
     app.post('/login', (req, res) => {
     console.log(req.body);
     const username = req.body.username;
