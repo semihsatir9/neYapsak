@@ -26,11 +26,121 @@ function UserPage() {
     const [ing_pasta,setIng_pasta] = useState("0");
     const [ing_cheese,setIng_cheese] = useState("0");
     const [userid,setUserid] = useState("");
+    const [supermarketBool, setSupermarketBool] = useState("");
+    const [userTime, setUserTime] = useState("");
+    const [userDislike, setUserDislike] = useState("");
+    const [cal, setCal] = useState("");
+    
+    const [rice_dislike, setRice_dislike] = useState(true);
+    const [tomato_dislike, setTomato_dislike] = useState(true);
+    const [egg_dislike, setEgg_dislike] = useState(true);
+    const [butter_dislike, setButter_dislike] = useState(true);
+    const [garlic_dislike, setGarlic_dislike] = useState(true);
+    const [chicken_dislike, setChicken_dislike] = useState(true);
+    const [milk_dislike, setMilk_dislike] = useState(true);
+    const [onion_dislike, setOnion_dislike] = useState(true);
+    const [carrot_dislike, setCarrot_dislike] = useState(true);
+    const [meat_dislike, setMeat_dislike] = useState(true);
+    const [potato_dislike, setPotato_dislike] = useState(true);
+    const [bean_dislike, setBean_dislike] = useState(true);
+    const [pasta_dislike, setPasta_dislike] = useState(true);
+    const [cheese_dislike, setCheese_dislike] = useState(true);
+
+
+
 
     let navigate = useNavigate();
     let useridtitle;
 
 
+    const handleCheck=(data)=>{
+        if(data=="rice"){
+            if(rice_dislike == true){
+                console.log("true rice")
+            }
+            setRice_dislike(!rice_dislike)
+        }
+        if(data=="tomato"){
+            if(tomato_dislike == true){
+                console.log("true tomato")
+            }
+            setTomato_dislike(!tomato_dislike)
+        }
+        if(data=="egg"){
+            if(egg_dislike == true){
+                console.log("true egg")
+            }
+            setEgg_dislike(!egg_dislike)
+        }
+        if(data=="butter"){
+            if(butter_dislike == true){
+                console.log("true butter")
+            }
+            setButter_dislike(!butter_dislike)
+        }
+        if(data=="garlic"){
+            if(garlic_dislike == true){
+                console.log("true garlic")
+            }
+            setGarlic_dislike(!garlic_dislike)
+        }
+        if(data=="chicken"){
+            if(chicken_dislike == true){
+                console.log("true chicken")
+            }
+            setChicken_dislike(!chicken_dislike)
+        }
+        if(data=="milk"){
+            if(milk_dislike == true){
+                console.log("true milk")
+            }
+            setMilk_dislike(!milk_dislike)
+        }
+        if(data=="onion"){
+            if(onion_dislike == true){
+                console.log("true onion")
+            }
+            setOnion_dislike(!onion_dislike)
+        }
+        if(data=="carrot"){
+            if(carrot_dislike == true){
+                console.log("true carrot")
+            }
+            setCarrot_dislike(!carrot_dislike)
+        }
+        if(data=="meat"){
+            if(meat_dislike == true){
+                console.log("true meat")
+            }
+            setMeat_dislike(!meat_dislike)
+        }
+        if(data=="potato"){
+            if(potato_dislike == true){
+                console.log("true potato")
+            }
+            setPotato_dislike(!potato_dislike)
+        }
+        if(data=="bean"){
+            if(bean_dislike == true){
+                console.log("true bean")
+            }
+            setBean_dislike(!bean_dislike)
+        }
+        if(data=="pasta"){
+            if(pasta_dislike == true){
+                console.log("true pasta")
+            }
+            setPasta_dislike(!pasta_dislike)
+        }
+        if(data=="cheese"){
+            if(cheese_dislike == true){
+                console.log("true cheese")
+            }
+            setCheese_dislike(!cheese_dislike)
+        }
+        
+        
+    }
     
 
     
@@ -150,42 +260,50 @@ function UserPage() {
             <div className="align-left" >
                 <form>
                 <h6>Optimization</h6>
+                <h1></h1> 
                 <label>Q1: Do you plan on going to the supermarket?</label><br></br><br></br>
-                <input type = "radio" id = "yes" name="supermarketq" value="Yes"></input>
+                <input type = "radio" id = "yes" name="supermarketq" value="Yes" onChange={e=>setSupermarketBool(e.target.value)}></input>
                 <label for = "yes">Yes</label>
                 <br></br>
-                <input type = "radio" id = "no" name="supermarketq" value="No"></input>
+                <input type = "radio" id = "no" name="supermarketq" value="No" onChange={e=>setSupermarketBool(e.target.value)}></input>
                 <label for = "nes">No</label><br></br><br></br>
                 <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br><br></br>
-                <input type = "int" id = "time" name="timeq"></input><br></br><br></br>
-                <label>Q3: What ingredients do you hate?</label><br></br><br></br>
+                <input type = "int" id = "time" name="timeq" onChange={e=>setUserTime(e.target.value)}></input><br></br><br></br>
+                <label>Q3: What ingredients do you not prefer?</label><br></br><br></br>
                 <div className="inlineBlock">
-                <input type = "checkbox" id = "hate1" name="hate1" value = "Rice"></input>
-                <label for = "hate1">Rice</label>
-                <input type = "checkbox" id = "hate2" name="hate2" value = "Rice"></input>
-                <label for = "hate2">Rice</label>
-                <input type = "checkbox" id = "hate3" name="hate3" value = "Rice"></input>
-                <label for = "hate3">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
-                <input type = "checkbox" id = "hate4" name="hate4" value = "Rice"></input>
-                <label for = "hate4">Rice</label>
+                <input type = "checkbox" id = "dislike1" name="dislike1" value = "Rice" onChange={()=>handleCheck("rice")}></input>
+                <label for = "dislike1">Rice</label>
+                <input type = "checkbox" id = "dislike2" name="dislike2" value = "Tomato" onChange={()=>handleCheck("tomato")}></input>
+                <label for = "dislike2">Tomato</label>
+                <input type = "checkbox" id = "dislike3" name="dislike3" value = "Egg" onChange={()=>handleCheck("egg")}></input>
+                <label for = "dislike3">Egg</label>
+                <input type = "checkbox" id = "dislike4" name="dislike4" value = "Butter" onChange={()=>handleCheck("butter")}></input>
+                <label for = "dislike4">Butter</label>
+                <input type = "checkbox" id = "dislike5" name="dislike5" value = "Garlic" onChange={()=>handleCheck("garlic")}></input>
+                <label for = "dislike5">Garlic</label>
+                <input type = "checkbox" id = "dislike6" name="dislike6" value = "Chicken" onChange={()=>handleCheck("chicken")}></input>
+                <label for = "dislike">Chicken</label>
+                <input type = "checkbox" id = "dislike7" name="dislike7" value = "Milk" onChange={()=>handleCheck("milk")}></input>
+                <label for = "dislike7">Milk</label>
+                <br></br>
+                <input type = "checkbox" id = "dislike8" name="dislike8" value = "Onion" onChange={()=>handleCheck("onion")}></input>
+                <label for = "dislike8">Onion</label>
+                <input type = "checkbox" id = "dislike9" name="dislike9" value = "Carrot" onChange={()=>handleCheck("carrot")}></input>
+                <label for = "dislike9">Carrot</label>
+                <input type = "checkbox" id = "dislike10" name="dislike10" value = "Meat" onChange={()=>handleCheck("meat")}></input>
+                <label for = "dislike10">Meat</label>
+                <input type = "checkbox" id = "dislike11" name="dislike11" value = "Potato" onChange={()=>handleCheck("potato")}></input>
+                <label for = "dislike11">Potato</label>
+                <input type = "checkbox" id = "dislike12" name="dislike12" value = "Bean" onChange={()=>handleCheck("bean")}></input>
+                <label for = "dislike12">Bean</label>
+                <input type = "checkbox" id = "dislike13" name="dislike13" value = "Pasta" onChange={()=>handleCheck("pasta")}></input>
+                <label for = "dislike12">Pasta</label>
+                <input type = "checkbox" id = "dislike14" name="dislike14" value = "Cheese" onChange={()=>handleCheck("cheese")}></input>
+                <label for = "dislike12">Cheese</label>
                 </div>
                 <br></br><br></br>
                 <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
-                <input type = "int" id = "cal" name="calq"></input>
+                <input type = "int" id = "cal" name="calq" onChange = {e=>setCal(e.target.value)}></input>
                 <button className="button align-right"><span>Answer</span></button>
                 </form>
             </div>
