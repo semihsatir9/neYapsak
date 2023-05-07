@@ -34,11 +34,6 @@ function UserPage() {
     let ingredients;
     let totalCalories = 0;
     
-
-
-    
-
-    
     const logout = () => {
         
         Axios.post('http://localhost:3001/logout', {
@@ -71,11 +66,6 @@ function UserPage() {
         }
       }
 
-      async function getAndLogCaloriesTotal(id) {
-        const calories = await getCaloriesTotal(id);
-        const totalCalories = parseInt(calories);
-        console.log(totalCalories);
-      }
 
 
     function updateInventory(){
@@ -179,8 +169,9 @@ function UserPage() {
             
         });
 
-        function getcal(){
-            getAndLogCaloriesTotal(1);
+        async function getcal(){
+            const exo = await getCaloriesTotal(1);
+            console.log(exo)
         }
 
         
