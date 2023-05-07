@@ -180,7 +180,7 @@ function UserPage() {
         });
 
         function getcal(){
-            console.log(getAndLogCaloriesTotal(1));
+            getAndLogCaloriesTotal(1);
         }
 
         
