@@ -29,7 +29,7 @@ function UserPage() {
     const [supermarketBool, setSupermarketBool] = useState("");
     const [userTime, setUserTime] = useState("");
     const [userDislike, setUserDislike] = useState("");
-    const [cal, setCal] = useState("");
+    const [userCal, setUserCal] = useState("");
     const [rice_dislike, setRice_dislike] = useState(false);
     const [tomato_dislike, setTomato_dislike] = useState(false);
     const [egg_dislike, setEgg_dislike] = useState(false);
@@ -292,28 +292,7 @@ function UserPage() {
         console.log("Before For loop")
         console.log(recipeids)
 
-
-        for(let i = 0; i < recipeids.length; i++){
-            console.log("Entereed For Loop")
-            let score = 0;
-            if(supermarketBool){
-                //run inventory check here
-            }
-            
-            //inventory check done
-            //problem of time
-
-            score += userTime - recipeids[i].recipetime;
-
-            //time resolved. Score is the evaluation of the difference between
-            //the desired time and the recipe time.
-            
-            //disliking ingredients
-            const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: recipeids[i].recipeid});
-            
-            
-            //disliked ingredient array
-            let dislikedarray = []
+        let dislikedarray = []
             if(rice_dislike){
                 dislikedarray.push(2);
             }
@@ -357,21 +336,52 @@ function UserPage() {
                 dislikedarray.push(16);
             }
 
+
+        for(let i = 0; i < recipeids.length; i++){
+            console.log("Entereed For Loop")
+            let score = 0;
+            if(supermarketBool){
+                //run inventory check here
+            }
+            
+            //inventory check done
+            //problem of time
+
+            score += userTime - recipeids[i].recipetime;
+
+            //time resolved. Score is the evaluation of the difference between
+            //the desired time and the recipe time.
+            
+            //disliking ingredients
+            const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: recipeids[i].recipeid});
+            
+            
+            //disliked ingredient array
+            
             console.log(dislikedarray)
             
             for(let i = 0; i < response.data.length; i++) {
-                if(dislikedarray.includes(response.data[i].ingredientID)){
-                    console.log("damn it works")
+                if(dislikedarray.includes(response.data[i].ingredientId)){
+                    score -= 50;
+                    console.log("dislike food works")
                 }
-
-                
-                
             }
-            
 
-            
+            //disliked food done
 
-        }
+            //calorie
+            let calorieVal = await getCaloriesTotal(recipeids[i].recipeid)
+
+            score += ((userCal - calorieVal) / 100)
+            console.log(calorieVal)
+
+            //calorie done
+
+            recipeids[i].score = score;
+            }
+
+            console.log("end of for loop")
+            console.log(recipeids)
     
     
     
@@ -444,7 +454,7 @@ function UserPage() {
                 </div>
                 <br></br><br></br>
                 <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
-                <input type = "int" id = "cal" name="calq" onChange = {e=>setCal(e.target.value)}></input>
+                <input type = "int" id = "cal" name="calq" onChange = {e=>setUserCal(e.target.value)}></input>
                 <button className="button align-right" onClick={
                     runAlgorithm
                     }><span>Answer</span></button>
