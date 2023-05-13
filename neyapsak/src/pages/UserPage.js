@@ -348,7 +348,7 @@ function UserPage() {
             //inventory check done
             //problem of time
 
-            score += userTime - recipeids[i].recipetime;
+            score += (userTime - recipeids[i].recipetime) / 2;
 
             console.log("score after time " + score)
 
@@ -382,13 +382,14 @@ function UserPage() {
 
             //calorie done
 
-            console.log("score after calorie " + score)
+            console.log("score after calorie final " + score)
 
             recipeids[i].score = score;
             }
 
             console.log("end of for loop")
             console.log(recipeids)
+            
     
     
     
@@ -397,12 +398,6 @@ function UserPage() {
         //Main Lines
         //This is the start of the whole recipe creation plan
         
-
-        
-
-
-        
-
 
 
     return(
