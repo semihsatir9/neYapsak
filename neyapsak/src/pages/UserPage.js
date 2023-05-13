@@ -48,11 +48,12 @@ function UserPage() {
 
 
 
+    
 
     let navigate = useNavigate();
     let useridtitle;
-
-
+    let recipeids = [];
+    let ingredients;
     const handleCheck=(data)=>{
         if(data=="rice"){
             if(rice_dislike == true){
@@ -141,8 +142,7 @@ function UserPage() {
         
         
     }
-    
-
+    let totalCalories = 0;
     
     const logout = () => {
         
@@ -156,6 +156,26 @@ function UserPage() {
             navigate("/login")
           }, 1000);
     };
+
+    async function getCaloriesTotal(id) {
+        let totalCalories = 0;
+        try {
+          const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: id});
+          const responsee = await Axios.post("http://localhost:3001/getingredients");
+          for(let i = 0; i < response.data.length; i++) {
+            for(let j = 0; j < responsee.data.length; j++) {
+              if(response.data[i].ingredientId == responsee.data[j].ingrId) {
+                totalCalories += (responsee.data[j].calories) * (response.data[i].amount);
+              }
+            }
+          }
+          totalCalories = parseInt(totalCalories)
+          return totalCalories;
+        } catch(error) {
+          console.error(error);
+        }
+      }
+
 
 
     function updateInventory(){
@@ -211,7 +231,7 @@ function UserPage() {
         Axios.post("http://localhost:3001/initialize", {
             userid: userid
         }).then((response) => {
-            console.log(userid);
+            console.log("User id: " +userid);
             console.log(response);
             setIng_rice(response.data[0].ingrAmount);
             setIng_tomato(response.data[1].ingrAmount);
@@ -247,6 +267,30 @@ function UserPage() {
         
         
     }, [])
+
+        //This is the start of the whole recipe creation plan
+        Axios.post("http://localhost:3001/getrecipeids", {
+        }).then((response) => {
+            recipeids = []
+            for(let i = 0; i < response.data.length; i++){
+                recipeids.push(response.data[i].recipeID)
+            }
+            console.log(recipeids)
+            
+        });
+
+        async function getcal(){
+            const exo = await getCaloriesTotal(1);
+            console.log(exo)
+        }
+
+        
+
+
+    
+
+
+
     return(
         
         <div className = "align-left">
@@ -372,6 +416,9 @@ function UserPage() {
                 <button class="button align-right" onClick={
                     updateInventory
                     }><span>Update Inventory</span></button>
+                <button class="button align-right" onClick={
+                    getcal
+                    }><span>testcal</span></button>
 
                 </div>
             
