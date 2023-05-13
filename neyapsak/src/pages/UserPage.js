@@ -340,6 +340,7 @@ function UserPage() {
         for(let i = 0; i < recipeids.length; i++){
             console.log("Entereed For Loop")
             let score = 0;
+            console.log("score initialized " + score)
             if(supermarketBool){
                 //run inventory check here
             }
@@ -348,6 +349,8 @@ function UserPage() {
             //problem of time
 
             score += userTime - recipeids[i].recipetime;
+
+            console.log("score after time " + score)
 
             //time resolved. Score is the evaluation of the difference between
             //the desired time and the recipe time.
@@ -362,20 +365,24 @@ function UserPage() {
             
             for(let i = 0; i < response.data.length; i++) {
                 if(dislikedarray.includes(response.data[i].ingredientId)){
-                    score -= 50;
+                    score -= 150;
                     console.log("dislike food works")
                 }
             }
+
+            console.log("score after dislike " + score)
 
             //disliked food done
 
             //calorie
             let calorieVal = await getCaloriesTotal(recipeids[i].recipeid)
 
-            score += ((userCal - calorieVal) / 100)
+            score += ((userCal - calorieVal) / 25)
             console.log(calorieVal)
 
             //calorie done
+
+            console.log("score after calorie " + score)
 
             recipeids[i].score = score;
             }
