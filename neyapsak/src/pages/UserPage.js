@@ -279,8 +279,7 @@ function UserPage() {
     }
 
     async function runAlgorithm(){
-        Axios.post("http://localhost:3001/getrecipeids", {
-        }).then((response) => {
+        const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
                 recipeids.push({recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
@@ -288,10 +287,14 @@ function UserPage() {
             console.log(recipeids)
             console.log(recipeids[0].recipeid)
 
-        });
+        
+
+        console.log("Before For loop")
+        console.log(recipeids)
 
 
         for(let i = 0; i < recipeids.length; i++){
+            console.log("Entereed For Loop")
             let score = 0;
             if(supermarketBool){
                 //run inventory check here
@@ -307,7 +310,63 @@ function UserPage() {
             
             //disliking ingredients
             const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: recipeids[i].recipeid});
-            const responsee = await Axios.post("http://localhost:3001/getingredients");
+            
+            
+            //disliked ingredient array
+            let dislikedarray = []
+            if(rice_dislike){
+                dislikedarray.push(2);
+            }
+            if(tomato_dislike){
+                dislikedarray.push(4);
+            }
+            if(egg_dislike){
+                dislikedarray.push(5);
+            }
+            if(butter_dislike){
+                dislikedarray.push(6);
+            }
+            if(garlic_dislike){
+                dislikedarray.push(7);
+            }
+            if(chicken_dislike){
+                dislikedarray.push(8);
+            }
+            if(milk_dislike){
+                dislikedarray.push(9);
+            }
+            if(onion_dislike){
+                dislikedarray.push(10);
+            }
+            if(carrot_dislike){
+                dislikedarray.push(11);
+            }
+            if(meat_dislike){
+                dislikedarray.push(12);
+            }
+            if(potato_dislike){
+                dislikedarray.push(13);
+            }
+            if(bean_dislike){
+                dislikedarray.push(14);
+            }
+            if(pasta_dislike){
+                dislikedarray.push(15);
+            }
+            if(cheese_dislike){
+                dislikedarray.push(16);
+            }
+
+            console.log(dislikedarray)
+            
+            for(let i = 0; i < response.data.length; i++) {
+                if(dislikedarray.includes(response.data[i].ingredientID)){
+                    console.log("damn it works")
+                }
+
+                
+                
+            }
             
 
             
