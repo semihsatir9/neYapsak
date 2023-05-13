@@ -30,7 +30,6 @@ function UserPage() {
     const [userTime, setUserTime] = useState("");
     const [userDislike, setUserDislike] = useState("");
     const [cal, setCal] = useState("");
-    
     const [rice_dislike, setRice_dislike] = useState(true);
     const [tomato_dislike, setTomato_dislike] = useState(true);
     const [egg_dislike, setEgg_dislike] = useState(true);
@@ -45,6 +44,8 @@ function UserPage() {
     const [bean_dislike, setBean_dislike] = useState(true);
     const [pasta_dislike, setPasta_dislike] = useState(true);
     const [cheese_dislike, setCheese_dislike] = useState(true);
+    const [allrecipes, setAllRecipes] = useState([]);
+    const [recipeids, setRecipeids] = useState([]);
 
 
 
@@ -52,7 +53,6 @@ function UserPage() {
 
     let navigate = useNavigate();
     let useridtitle;
-    let recipeids = [];
     let ingredients;
     const handleCheck=(data)=>{
         if(data=="rice"){
@@ -268,26 +268,64 @@ function UserPage() {
         
     }, [])
 
-        //This is the start of the whole recipe creation plan
+    async function getcal(){
+        const exo = await getCaloriesTotal(1);
+        console.log(exo)
+        
+            
+            
+            
+        
+    }
+
+    async function runAlgorithm(){
         Axios.post("http://localhost:3001/getrecipeids", {
         }).then((response) => {
-            recipeids = []
+            setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
-                recipeids.push(response.data[i].recipeID)
+                recipeids.push({recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
             }
             console.log(recipeids)
-            
+            console.log(recipeids[0].recipeid)
+
         });
 
-        async function getcal(){
-            const exo = await getCaloriesTotal(1);
-            console.log(exo)
+
+        for(let i = 0; i < recipeids.length; i++){
+            let score = 0;
+            if(supermarketBool){
+                //run inventory check here
+            }
+            
+            //inventory check done
+            //problem of time
+
+            score += userTime - recipeids[i].recipetime;
+
+            //time resolved. Score is the evaluation of the difference between
+            //the desired time and the recipe time.
+            
+            //disliking ingredients
+            const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: recipeids[i].recipeid});
+            const responsee = await Axios.post("http://localhost:3001/getingredients");
+            
+
+            
+
         }
+    
+    
+    
+    
+    }
+        //Main Lines
+        //This is the start of the whole recipe creation plan
+        
 
         
 
 
-    
+        
 
 
 
@@ -302,7 +340,7 @@ function UserPage() {
 
         </div>
             <div className="align-left" >
-                <form>
+                
                 <h6>Optimization</h6>
                 <h1></h1> 
                 <label>Q1: Do you plan on going to the supermarket?</label><br></br><br></br>
@@ -348,8 +386,10 @@ function UserPage() {
                 <br></br><br></br>
                 <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
                 <input type = "int" id = "cal" name="calq" onChange = {e=>setCal(e.target.value)}></input>
-                <button className="button align-right"><span>Answer</span></button>
-                </form>
+                <button className="button align-right" onClick={
+                    runAlgorithm
+                    }><span>Answer</span></button>
+                
             </div>
 
             
