@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { Checkbox } from "@material-ui/core";
 
 Axios.defaults.withCredentials = true;
 
@@ -11,22 +12,22 @@ function UserPage() {
     const [password, setPassword] = useState("");
     const [inventoryStatus, setInventoryStatus] = useState("");
     const [Status, setStatus] = useState("");
-    const [ing_rice,setIng_rice] = useState("0");
-    const [ing_tomato,setIng_tomato] = useState("0");
-    const [ing_egg,setIng_egg] = useState("0");
-    const [ing_butter,setIng_butter] = useState("0");
-    const [ing_garlic,setIng_garlic] = useState("0");
-    const [ing_chicken,setIng_chicken] = useState("0");
-    const [ing_milk,setIng_milk] = useState("0");
-    const [ing_onion,setIng_onion] = useState("0");
-    const [ing_meat,setIng_meat] = useState("0");
-    const [ing_carrot,setIng_carrot] = useState("0");
-    const [ing_potato,setIng_potato] = useState("0");
-    const [ing_bean,setIng_bean] = useState("0");
-    const [ing_pasta,setIng_pasta] = useState("0");
-    const [ing_cheese,setIng_cheese] = useState("0");
+    const [ing_rice,setIng_rice] = useState(0);
+    const [ing_tomato,setIng_tomato] = useState(0);
+    const [ing_egg,setIng_egg] = useState(0);
+    const [ing_butter,setIng_butter] = useState(0);
+    const [ing_garlic,setIng_garlic] = useState(0);
+    const [ing_chicken,setIng_chicken] = useState(0);
+    const [ing_milk,setIng_milk] = useState(0);
+    const [ing_onion,setIng_onion] = useState(0);
+    const [ing_meat,setIng_meat] = useState(0);
+    const [ing_carrot,setIng_carrot] = useState(0);
+    const [ing_potato,setIng_potato] = useState(0);
+    const [ing_bean,setIng_bean] = useState(0);
+    const [ing_pasta,setIng_pasta] = useState(0);
+    const [ing_cheese,setIng_cheese] = useState(0);
     const [userid,setUserid] = useState(0);
-    const [supermarketBool, setSupermarketBool] = useState("");
+    const [supermarketBool, setSupermarketBool] = useState(false);
     const [userTime, setUserTime] = useState("");
     const [userDislike, setUserDislike] = useState("");
     const [userCal, setUserCal] = useState("");
@@ -139,6 +140,15 @@ function UserPage() {
             }
             setCheese_dislike(!cheese_dislike)
         }
+        if(data == false){
+            console.log("True")
+            setSupermarketBool(!supermarketBool)
+        }
+        if(data == true){
+            console.log("False")
+            setSupermarketBool(!supermarketBool)
+        }
+        
         
         
     }
@@ -289,7 +299,7 @@ function UserPage() {
 
         
 
-        console.log("Before For loop")
+        console.log("1. Before For loop")
         console.log(recipeids)
 
         let dislikedarray = []
@@ -338,14 +348,26 @@ function UserPage() {
 
 
         for(let i = 0; i < recipeids.length; i++){
-            console.log("Entereed For Loop")
+            console.log("2. Entereed For Loop")
             let score = 0;
-            console.log("score initialized " + score)
-            if(supermarketBool){
-                const user = await Axios.post('http://localhost:3001/getrecipeids',{userid: userid, ingrId: recipeids[i].recipeid});
-                console.log("user has " + user[0].ingrAmount + " yes")
+            console.log("3. score initialized " + score)
+            if(supermarketBool == true){
+                const recipeingredient = await Axios.post('http://localhost:3001/getfromrecipe', {recipeid: recipeids[i].recipeid});
+                const userinventory = await Axios.post('http://localhost:3001/getuserinventory', {userid: userid});
+                console.log("4. Recipe ingredients gathered")
 
-                //nonscalable so we have to all manually
+                //nonscalable so we have to check all manually
+
+                for(let j = 0; j < recipeingredient.data.length; j++){
+                    for(let k = 0; k < userinventory.data.length; k++){
+                        if(recipeingredient.data[j].ingredientId == userinventory.data[k].ingrId){
+                            if(userinventory.data[k].ingrAmount < recipeingredient.data[j].amount){
+                                score -= 150;
+                                console.log("Score moment")
+                            }
+                        }
+                    }
+                }
 
                 
                 
@@ -356,7 +378,7 @@ function UserPage() {
 
             score += (userTime - recipeids[i].recipetime) / 2;
 
-            console.log("score after time " + score)
+            console.log("5. score after time " + score)
 
             //time resolved. Score is the evaluation of the difference between
             //the desired time and the recipe time.
@@ -376,7 +398,7 @@ function UserPage() {
                 }
             }
 
-            console.log("score after dislike " + score)
+            console.log("6. score after dislike " + score)
 
             //disliked food done
 
@@ -388,18 +410,23 @@ function UserPage() {
 
             //calorie done
 
-            console.log("score after calorie final " + score)
+            console.log("7. score after calorie final " + score)
 
             recipeids[i].score = score;
             }
 
-            console.log("end of for loop")
+            console.log("8. end of for loop")
             console.log(recipeids)
             
     
     
     
     
+    }
+    
+    const changeBoolean = e =>{
+        setSupermarketBool(e.target.value)
+        console.log(supermarketBool)
     }
         //Main Lines
         //This is the start of the whole recipe creation plan
@@ -420,12 +447,8 @@ function UserPage() {
                 
                 <h6>Optimization</h6>
                 <h1></h1> 
-                <label>Q1: Do you plan on going to the supermarket?</label><br></br><br></br>
-                <input type = "radio" id = "yes" name="supermarketq" value="Yes" onChange={e=>setSupermarketBool(e.target.value)}></input>
-                <label for = "yes">Yes</label>
-                <br></br>
-                <input type = "radio" id = "no" name="supermarketq" value="No" onChange={e=>setSupermarketBool(e.target.value)}></input>
-                <label for = "nes">No</label><br></br><br></br>
+                <label>Q1: Do you plan on going to the supermarket?</label>
+                <input type = "checkbox" id = "supermarket" name="supermarket"  onChange={()=>handleCheck(supermarketBool)}></input><br></br><br></br>
                 <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br><br></br>
                 <input type = "int" id = "time" name="timeq" onChange={e=>setUserTime(e.target.value)}></input><br></br><br></br>
                 <label>Q3: What ingredients do you not prefer?</label><br></br><br></br>
