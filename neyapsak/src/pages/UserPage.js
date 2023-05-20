@@ -348,7 +348,19 @@ function UserPage() {
             //inventory check done
             //problem of time
 
-            score += (userTime - recipeids[i].recipetime) / 2;
+
+                
+            //userTime == recipeids[i].recipetime, score = 100
+            //userTime > recipeids[i].recipetime, score < 100
+            //userTime < recipeids[i].recipetime, score = -100
+
+                if(userTime == recipeids[i].recipetime){
+                    score += 50
+                } else if(userTime > recipeids[i].recipetime){
+                    score += 50 - (userTime - recipeids[i].recipetime)
+                } else {
+                    score += -50
+                }
 
             console.log("score after time " + score)
 
@@ -377,7 +389,15 @@ function UserPage() {
             //calorie
             let calorieVal = await getCaloriesTotal(recipeids[i].recipeid)
 
-            score += ((userCal - calorieVal) / 25)
+
+            if(userCal == calorieVal){
+                score += 50
+            } else if(userCal > calorieVal){
+                score += 50 - ((userCal - calorieVal)/20)
+            } else {
+                score += -50
+            }
+
             console.log(calorieVal)
 
             //calorie done
