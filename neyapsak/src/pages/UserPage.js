@@ -359,7 +359,7 @@ function UserPage() {
                 } else if(userTime > recipeids[i].recipetime){
                     score += 50 - (userTime - recipeids[i].recipetime)
                 } else {
-                    score += -50
+                    score -= 50
                 }
 
             console.log("score after time " + score)
@@ -395,7 +395,7 @@ function UserPage() {
             } else if(userCal > calorieVal){
                 score += 50 - ((userCal - calorieVal)/20)
             } else {
-                score += -50
+                score -= 50
             }
 
             console.log(calorieVal)
