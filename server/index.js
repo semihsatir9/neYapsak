@@ -787,6 +787,23 @@ app.post('/update_inventory', (req, res) => {
 });
 
     //end of update inventory
+    
+    app.post('/getfrominventory', (req, res) => {
+        console.log(req.body);
+        const userid = req.body.userid;
+        const ingrid = req.body.ingrid;
+        db.query(
+            "SELECT * FROM user_inventory where userId = ? AND ingrId = ?", [userid,ingrid],
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                }
+                else{
+                    res.send(result)
+                }
+            }
+        )
+    });
 
     app.post('/getrecipeids', (req, res) => {
         console.log(req.body);

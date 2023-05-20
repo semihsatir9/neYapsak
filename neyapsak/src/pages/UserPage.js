@@ -25,7 +25,7 @@ function UserPage() {
     const [ing_bean,setIng_bean] = useState("0");
     const [ing_pasta,setIng_pasta] = useState("0");
     const [ing_cheese,setIng_cheese] = useState("0");
-    const [userid,setUserid] = useState("");
+    const [userid,setUserid] = useState(0);
     const [supermarketBool, setSupermarketBool] = useState("");
     const [userTime, setUserTime] = useState("");
     const [userDislike, setUserDislike] = useState("");
@@ -342,7 +342,13 @@ function UserPage() {
             let score = 0;
             console.log("score initialized " + score)
             if(supermarketBool){
-                //run inventory check here
+                const user = await Axios.post('http://localhost:3001/getrecipeids',{userid: userid, ingrId: recipeids[i].recipeid});
+                console.log("user has " + user[0].ingrAmount + " yes")
+
+                //nonscalable so we have to all manually
+
+                
+                
             }
             
             //inventory check done
