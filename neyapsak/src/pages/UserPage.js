@@ -433,9 +433,28 @@ function UserPage() {
             console.log("7. score after calorie final " + score)
 
             recipeids[i].score = score;
-            }
+        }
 
             console.log("8. end of for loop")
+
+            //sorting algorithm here
+
+            for(let i = 0; i < recipeids.length; i++){
+
+                //Inner pass
+                for(let j = 0; j < recipeids.length - i - 1; j++){
+        
+                    //Value comparison using ascending order
+        
+                    if(recipeids[j + 1].score >= recipeids[j].score){
+        
+                        //Swapping
+                        [recipeids[j + 1],recipeids[j]] = [recipeids[j],recipeids[j + 1]]
+                    }
+                }
+            };
+
+            setBestCase(recipeids[0].recipeName)
             console.log(recipeids)
             
     
