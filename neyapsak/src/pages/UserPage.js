@@ -47,6 +47,7 @@ function UserPage() {
     const [cheese_dislike, setCheese_dislike] = useState(false);
     const [allrecipes, setAllRecipes] = useState([]);
     const [recipeids, setRecipeids] = useState([]);
+    const [recipestate, setRecipeState] = useState([])
     const [bestcase, setBestCase] = useState([])
     const [bestcasedesc, setBestCaseDesc] = useState([])    
     const [resultDiv, setResultDiv] = useState(true)  
@@ -304,7 +305,7 @@ function UserPage() {
         const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
-                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, recipedesc : response.data[i].recipeDesc, score: 0})
+                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, recipedesc : response.data[i].recipeDesc, score: 0, state: ""})
             }
             console.log(recipeids)
             console.log(recipeids[0].recipeid)
@@ -466,8 +467,17 @@ function UserPage() {
                 }
             };
 
+            for(let i = 0; i < recipeids.length; i++){
+                if(recipeids[i].score <= -50){
+                    recipeids[i].state = "The algorithm has deemed this recipe to be too unoptimal"
+                } else {
+                    recipeids[i].state = ""
+                }
+            }
+
             
             console.log(recipeids)
+            setRecipeState([recipeids[0].state,recipeids[1].state,recipeids[2].state, ""])
             setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
             setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
@@ -546,6 +556,7 @@ function UserPage() {
             <br></br><br></br>
             <div className="align-left" hidden={resultDiv}>
                 <h3>Your most optimal recipe is: </h3>
+                <h3>{recipestate[arrInd]}</h3>
                 <h3>{bestcase[arrInd]}</h3>
                 <h3>{bestcasedesc[arrInd]}</h3>
 
