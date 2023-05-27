@@ -47,7 +47,8 @@ function UserPage() {
     const [cheese_dislike, setCheese_dislike] = useState(false);
     const [allrecipes, setAllRecipes] = useState([]);
     const [recipeids, setRecipeids] = useState([]);
-    const [bestcase, setBestCase] = useState([])    
+    const [bestcase, setBestCase] = useState([])
+    const [bestcasedesc, setBestCaseDesc] = useState([])    
     const [resultDiv, setResultDiv] = useState(true)  
     const [arrInd, setArrInd] = useState(0) 
 
@@ -303,7 +304,7 @@ function UserPage() {
         const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
-                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
+                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, recipedesc : response.data[i].recipeDesc, score: 0})
             }
             console.log(recipeids)
             console.log(recipeids[0].recipeid)
@@ -468,6 +469,7 @@ function UserPage() {
             
             console.log(recipeids)
             setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
+            setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
     
     
@@ -545,6 +547,7 @@ function UserPage() {
             <div className="align-left" hidden={resultDiv}>
                 <h3>Your most optimal recipe is: </h3>
                 <h3>{bestcase[arrInd]}</h3>
+                <h3>{bestcasedesc[arrInd]}</h3>
 
                 <button className="button" onClick={() =>
                     arrayPass(arrInd)
