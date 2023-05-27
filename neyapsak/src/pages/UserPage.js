@@ -47,9 +47,7 @@ function UserPage() {
     const [cheese_dislike, setCheese_dislike] = useState(false);
     const [allrecipes, setAllRecipes] = useState([]);
     const [recipeids, setRecipeids] = useState([]);
-    const [bestcase, setBestCase] = useState("")    
-    const [bestcase2, setBestCase2] = useState("")
-    const [bestcase3, setBestCase3] = useState("")
+    const [bestcase, setBestCase] = useState([])    
     const [resultDiv, setResultDiv] = useState(true)  
 
     
@@ -458,9 +456,7 @@ function UserPage() {
 
             
             console.log(recipeids)
-            setBestCase(recipeids[0].recipeName)
-            setBestCase2(recipeids[1].recipeName)
-            setBestCase3(recipeids[2].recipeName)
+            setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName])
             setResultDiv(false)
     
     
@@ -537,7 +533,7 @@ function UserPage() {
             <br></br><br></br>
             <div className="align-left" hidden={resultDiv}>
                 <h3>Your most optimal recipe is: </h3>
-                <h3>{bestcase}</h3>
+                <h3>{bestcase[0]}</h3>
 
                 <button className="button"
                     
