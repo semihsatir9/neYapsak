@@ -467,7 +467,7 @@ function UserPage() {
                 
                 <h6>Optimization</h6>
                 <h1></h1> 
-                <label>Q1: Do you plan on going to the supermarket?</label>
+                <label>Q1: Will you include your inventory to your preferences? (If selected, you will be presented with recipes that you have the ingredients for)</label>
                 <input type = "checkbox" id = "supermarket" name="supermarket"  onChange={()=>handleCheck(supermarketBool)}></input><br></br><br></br>
                 <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br><br></br>
                 <input type = "int" id = "time" name="timeq" onChange={e=>setUserTime(e.target.value)}></input><br></br><br></br>
@@ -504,7 +504,7 @@ function UserPage() {
                 <label for = "dislike12">Cheese</label>
                 </div>
                 <br></br><br></br>
-                <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted.)</label><br></br><br></br>
+                <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted. Average calories for general recipes is around 1500-2000)</label><br></br><br></br>
                 <input type = "int" id = "cal" name="calq" onChange = {e=>setUserCal(e.target.value)}></input>
                 <button className="button align-right" onClick={
                     runAlgorithm
