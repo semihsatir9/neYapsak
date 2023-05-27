@@ -292,7 +292,7 @@ function UserPage() {
         const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
-                recipeids.push({recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
+                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
             }
             console.log(recipeids)
             console.log(recipeids[0].recipeid)
