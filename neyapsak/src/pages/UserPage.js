@@ -49,6 +49,7 @@ function UserPage() {
     const [recipeids, setRecipeids] = useState([]);
     const [bestcase, setBestCase] = useState([])    
     const [resultDiv, setResultDiv] = useState(true)  
+    const [arrInd, setArrInd] = useState(0) 
 
     
 
@@ -237,6 +238,15 @@ function UserPage() {
 
     }
 
+    function arrayPass(arrInd){
+        if(arrInd == 3){
+            setArrInd(3)
+        } else {
+            setArrInd(arrInd+1)
+        }
+
+    }
+
     function initializeInventory(userid){
         Axios.post("http://localhost:3001/initialize", {
             userid: userid
@@ -289,6 +299,7 @@ function UserPage() {
     }
 
     async function runAlgorithm(){
+        setArrInd(0)
         const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
@@ -456,7 +467,7 @@ function UserPage() {
 
             
             console.log(recipeids)
-            setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName])
+            setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
             setResultDiv(false)
     
     
@@ -533,9 +544,11 @@ function UserPage() {
             <br></br><br></br>
             <div className="align-left" hidden={resultDiv}>
                 <h3>Your most optimal recipe is: </h3>
-                <h3>{bestcase[0]}</h3>
+                <h3>{bestcase[arrInd]}</h3>
 
-                <button className="button"
+                <button className="button" onClick={() =>
+                    arrayPass(arrInd)
+                }
                     
                     ><span>Change Recipe</span></button>
 
