@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Axios } from 'axios';
 import UserPage from './pages/UserPage';
+import Popup from './components/Popup';
 
 
 

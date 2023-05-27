@@ -3,6 +3,7 @@ import Axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Checkbox } from "@material-ui/core";
+import Popup from "../components/Popup";
 
 Axios.defaults.withCredentials = true;
 
@@ -47,8 +48,8 @@ function UserPage() {
     const [cheese_dislike, setCheese_dislike] = useState(false);
     const [allrecipes, setAllRecipes] = useState([]);
     const [recipeids, setRecipeids] = useState([]);
-
-
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [bestcase, setBestCase] = useState("a")
 
     
 
@@ -292,7 +293,7 @@ function UserPage() {
         const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
-                recipeids.push({recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
+                recipeids.push({recipeName: response.data[i].recipeName , recipeid: response.data[i].recipeID, recipetime: response.data[i].time, score: 0})
             }
             console.log(recipeids)
             console.log(recipeids[0].recipeid)
@@ -437,6 +438,10 @@ function UserPage() {
 
             console.log("8. end of for loop")
             console.log(recipeids)
+
+            //sorting algorithm here
+
+            setBestCase(recipeids[0].recipeName)
             
     
     
@@ -579,6 +584,12 @@ function UserPage() {
                 <button class="button align-right" onClick={
                     getcal
                     }><span>testcal</span></button>
+                <button class="button align-right" onClick={() => setButtonPopup(true)}
+                    
+                    ><span>popup</span></button>
+                    <Popup trigger ={buttonPopup} setTrigger={setButtonPopup}>
+                        <h3>{bestcase}</h3>
+                    </Popup>
 
                 </div>
             
