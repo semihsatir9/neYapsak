@@ -494,7 +494,7 @@ function UserPage() {
             //const response = await Axios.post('http://localhost:3001/getrecipeidfromrecipename', {recipename: insertrecipenamehere);
             //recipeid = response.data[0].recipeID
             //const response = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeid);
-            
+
             setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
     
@@ -582,18 +582,14 @@ function UserPage() {
                 <h3>{bestcasedesc[arrInd]}</h3>
 
                 <button className="button" onClick={() =>
-                    arrayPass(arrInd)
-                }
-                    ><span>Next Recipe</span></button>
-
-                <button className="button" onClick={() =>
                     arrayPrev(arrInd)
                 }
                     ><span>Previous Recipe</span></button>
 
-
-
-               
+                <button className="button" onClick={() =>
+                    arrayPass(arrInd)
+                }
+                    ><span>Next Recipe</span></button>
 
             </div>
 
