@@ -842,21 +842,7 @@ app.post('/update_inventory', (req, res) => {
         )
     });
 
-    app.post('/getingredientwithid', (req, res) => {
-        console.log(req.body);
-        const ingrId = req.body.ingrId;
-        db.query(
-            "SELECT * FROM ingredient where ingrId = ?", [ingrId],
-            (err, result) => {
-                if (err) {
-                    res.send({err: err});
-                }
-                else{
-                    res.send(result)
-                }
-            }
-        )
-    });
+    
 
 
 

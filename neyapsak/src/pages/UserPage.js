@@ -494,9 +494,8 @@ function UserPage() {
             //const response = await Axios.post('http://localhost:3001/getrecipeidfromrecipename', {recipename: insertrecipenamehere);
             //recipeid = response.data[0].recipeID
             //const response2 = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeid);
-            //const response3 = await Axios.post('http://localhost:3001/getingredientwithid', {ingrId: insertingridhere);
             //ingredient name = for loop response3.data[i].ingrName,
-            //ingredient amount = for loop response2.data[i].amount
+            
 
             setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
