@@ -51,7 +51,8 @@ function UserPage() {
     const [bestcase, setBestCase] = useState([])
     const [bestcasedesc, setBestCaseDesc] = useState([])    
     const [resultDiv, setResultDiv] = useState(true)  
-    const [arrInd, setArrInd] = useState(0) 
+    const [arrInd, setArrInd] = useState(0)
+    const [ingredientlist, setIngredientList] = useState("");
 
     
 
@@ -249,6 +250,15 @@ function UserPage() {
 
     }
 
+    function arrayPrev(arrInd){
+        if(arrInd == 0){
+            setArrInd(0)
+        } else {
+            setArrInd(arrInd-1)
+        }
+
+    }
+
     function initializeInventory(userid){
         Axios.post("http://localhost:3001/initialize", {
             userid: userid
@@ -365,7 +375,7 @@ function UserPage() {
             let score = 0;
             console.log("3. score initialized " + score)
             if(supermarketBool == true){
-                const recipeingredient = await Axios.post('http://localhost:3001/getfromrecipe', {recipeid: recipeids[i].recipeid});
+                const recipeingredient = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeids[i].recipeid});
                 const userinventory = await Axios.post('http://localhost:3001/getuserinventory', {userid: userid});
                 console.log("4. Recipe ingredients gathered")
 
@@ -479,6 +489,12 @@ function UserPage() {
             console.log(recipeids)
             setRecipeState([recipeids[0].state,recipeids[1].state,recipeids[2].state, ""])
             setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
+            //recipe ingredient list array here. With the function
+
+            //const response = await Axios.post('http://localhost:3001/getrecipeidfromrecipename', {recipename: insertrecipenamehere);
+            //recipeid = response.data[0].recipeID
+            //const response = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeid);
+            
             setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
     
@@ -557,14 +573,21 @@ function UserPage() {
             <div className="align-left" hidden={resultDiv}>
                 <h3>Your most optimal recipe is: </h3>
                 <h3>{recipestate[arrInd]}</h3>
+                <h3></h3>
                 <h3>{bestcase[arrInd]}</h3>
                 <h3>{bestcasedesc[arrInd]}</h3>
 
                 <button className="button" onClick={() =>
                     arrayPass(arrInd)
                 }
-                    
-                    ><span>Change Recipe</span></button>
+                    ><span>Next Recipe</span></button>
+
+                <button className="button" onClick={() =>
+                    arrayPrev(arrInd)
+                }
+                    ><span>Previous Recipe</span></button>
+
+
 
                
 

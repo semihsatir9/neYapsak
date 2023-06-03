@@ -759,28 +759,15 @@ app.post('/update_inventory', (req, res) => {
                                             
                                      
                                         }
-                                    )
-            
-            
-                                    
+                                    )   
                                 }
-                                  
-                                
-                         
+
                             }
                         )
-
-
-                        
+   
                     }
-                      
-                    
-             
                 }
             )
-
-
-  
         }
     )   
 
@@ -788,21 +775,7 @@ app.post('/update_inventory', (req, res) => {
 
     //end of update inventory
     
-    app.post('/getfromrecipe', (req, res) => {
-        console.log(req.body);
-        const recipeid = req.body.recipeid;
-        db.query(
-            "SELECT * FROM recipe_ingredient where recipeId = ?", [recipeid],
-            (err, result) => {
-                if (err) {
-                    res.send({err: err});
-                }
-                else{
-                    res.send(result)
-                }
-            }
-        )
-    });
+    
 
     app.post('/getuserinventory', (req, res) => {
         console.log(req.body);
@@ -834,6 +807,25 @@ app.post('/update_inventory', (req, res) => {
             }
         )
     });
+
+    app.post('/getrecipeidfromrecipename', (req, res) => {
+        console.log(req.body);
+        const recipename = req.body.recipename;
+        db.query(
+            "SELECT * FROM recipe where recipeName = ?" ,[recipename],
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                }
+                else{
+                    res.send(result)
+                }
+            }
+        )
+    });
+
+
+    
 
     app.post('/getingredients', (req, res) => {
         console.log(req.body);
