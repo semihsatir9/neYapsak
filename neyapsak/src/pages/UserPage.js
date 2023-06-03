@@ -527,7 +527,7 @@ function UserPage() {
                 <h1></h1> 
                 <label>Q1: Will you include your inventory to your preferences? (If selected, you will be presented with recipes that you have the ingredients for)</label>
                 <input type = "checkbox" id = "supermarket" name="supermarket"  onChange={()=>handleCheck(supermarketBool)}></input><br></br><br></br>
-                <label>Q2: How much time do you have to prepare dinner? (In Minutes)</label><br></br><br></br>
+                <label>Q2: How much time do you have to prepare dinner? (In Minutes. Average recipe time is 25 minutes.)</label><br></br><br></br>
                 <input type = "int" id = "time" name="timeq" onChange={e=>setUserTime(e.target.value)}></input><br></br><br></br>
                 <label>Q3: What ingredients do you not prefer?</label><br></br><br></br>
                 <div className="inlineBlock">
@@ -571,7 +571,11 @@ function UserPage() {
             </div>
             <br></br><br></br>
             <div className="align-left" hidden={resultDiv}>
-                <h3>Your most optimal recipe is: </h3>
+                <h3>The best possible recipes for you are: </h3>
+                <h3>1. {bestcase[0]}</h3>
+                <h3>2. {bestcase[1]}</h3>
+                <h3>3. {bestcase[2]}</h3>
+                <br></br>
                 <h3>{recipestate[arrInd]}</h3>
                 <h3></h3>
                 <h3>{bestcase[arrInd]}</h3>
