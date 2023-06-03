@@ -660,9 +660,6 @@ function UserPage() {
                 <button class="button align-right" onClick={
                     updateInventory
                     }><span>Update Inventory</span></button>
-                <button class="button align-right" onClick={
-                    getcal
-                    }><span>testcal</span></button>
 
                 </div>
             
