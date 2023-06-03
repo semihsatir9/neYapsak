@@ -215,6 +215,7 @@ input[type=number], select {
 
 .display-linebreak{
   margin-top: 20px;
+  white-space: pre-line;
 }
 
 

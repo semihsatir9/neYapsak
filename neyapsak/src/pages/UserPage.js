@@ -487,18 +487,19 @@ function UserPage() {
 
             
             console.log(recipeids)
+            
             setRecipeState([recipeids[0].state,recipeids[1].state,recipeids[2].state, ""])
             setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
             //recipe ingredient list array here. With the function
 
-            //const response = await Axios.post('http://localhost:3001/getrecipeidfromrecipename', {recipename: insertrecipenamehere);
-            //recipeid = response.data[0].recipeID
-            //const response2 = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeid);
-            //ingredient name = for loop response3.data[i].ingrName,
-            
-
+            const ingrresponse = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeids[0].recipeid});
+            const ingrresponse2 = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeids[1].recipeid});
+            const ingrresponse3 = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeids[2].recipeid});
+            setIngredientList([getIngredientList(ingrresponse),getIngredientList(ingrresponse2),getIngredientList(ingrresponse3)])
             setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
+
+            console.log(ingredientlist)
     
     
     
@@ -507,6 +508,26 @@ function UserPage() {
     const changeBoolean = e =>{
         setSupermarketBool(e.target.value)
         console.log(supermarketBool)
+    }
+
+    const getIngredientList = (recipeingredients) => {
+        let ingredientlist = "";
+        for(let i = 0; i < recipeingredients.data.length; i++){
+            if(recipeingredients.data[i].ingrName === "rice"  || recipeingredients.data[i].ingrName === "butter" || recipeingredients.data[i].ingrName === "chicken" || recipeingredients.data[i].ingrName === "meat" || recipeingredients.data[i].ingrName === "bean" || recipeingredients.data[i].ingrName === "pasta" || recipeingredients.data[i].ingrName === "cheese"){
+            ingredientlist += recipeingredients.data[i].amount + " grams of " + recipeingredients.data[i].ingrName + "\n"
+            }
+            else if(recipeingredients.data[i].ingrName === "milk"){
+            ingredientlist += recipeingredients.data[i].amount + " mililiters of " + recipeingredients.data[i].ingrName + "\n"
+            }
+            else if(recipeingredients.data[i].ingrName === "garlic"){
+            ingredientlist += recipeingredients.data[i].amount + " cloves of " + recipeingredients.data[i].ingrName + "\n"
+            }
+            else{
+            ingredientlist += recipeingredients.data[i].amount + " whole " + recipeingredients.data[i].ingrName + "(s) \n"
+            }
+        }
+        console.log(ingredientlist)
+        return ingredientlist
     }
         //Main Lines
         //This is the start of the whole recipe creation plan
@@ -579,8 +600,8 @@ function UserPage() {
                 <h3>3. {bestcase[2]}</h3>
                 <br></br>
                 <h3>{recipestate[arrInd]}</h3>
-                <h3></h3>
                 <h3>{bestcase[arrInd]}</h3>
+                <h3 className="display-linebreak">{ingredientlist[arrInd]}</h3>
                 <h3>{bestcasedesc[arrInd]}</h3>
 
                 <button className="button" onClick={() =>
@@ -597,7 +618,7 @@ function UserPage() {
 
             
             <div className="align-left">
-                <h6>User Inventory</h6>
+                <h6>User Inventory (Simple ingredients like salt, water, sunflower oil etc. are not included and will be asked in the recipe)</h6>
                 <div className="ingredientBox"> Rice (Grams)
                 <input type="text" name="rice" id="rice" value={ing_rice} onChange={(e) => { setIng_rice(e.target.value) }} required/>
                 </div>

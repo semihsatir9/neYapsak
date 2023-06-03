@@ -808,25 +808,6 @@ app.post('/update_inventory', (req, res) => {
         )
     });
 
-    app.post('/getrecipeidfromrecipename', (req, res) => {
-        console.log(req.body);
-        const recipename = req.body.recipename;
-        db.query(
-            "SELECT * FROM recipe where recipeName = ?" ,[recipename],
-            (err, result) => {
-                if (err) {
-                    res.send({err: err});
-                }
-                else{
-                    res.send(result)
-                }
-            }
-        )
-    });
-
-
-    
-
     app.post('/getingredients', (req, res) => {
         console.log(req.body);
         db.query(
@@ -847,9 +828,9 @@ app.post('/update_inventory', (req, res) => {
 
 
     app.post('/getrecipeingredients', (req, res) => {
-        const id = req.body.id
+        const recipeid = req.body.recipeid
         db.query(
-            "SELECT * FROM recipe_ingredient WHERE recipeID = ?",[id],
+            "SELECT * FROM recipe_ingredient WHERE recipeID = ?",[recipeid],
             (err, result) => {
                 if (err) {
                     res.send({err: err});
