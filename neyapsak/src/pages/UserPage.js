@@ -174,7 +174,7 @@ function UserPage() {
     async function getCaloriesTotal(id) {
         let totalCalories = 0;
         try {
-          const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: id});
+          const response = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: id});
           const responsee = await Axios.post("http://localhost:3001/getingredients");
           for(let i = 0; i < response.data.length; i++) {
             for(let j = 0; j < responsee.data.length; j++) {
