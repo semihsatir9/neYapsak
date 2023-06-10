@@ -176,7 +176,7 @@ function UserPage() {
     async function getCaloriesTotal(id) {
         let totalCalories = 0;
         try {
-          const response = await Axios.post('http://localhost:3001/getrecipeingredients', {id: id});
+          const response = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: id});
           const responsee = await Axios.post("http://localhost:3001/getingredients");
           for(let i = 0; i < response.data.length; i++) {
             for(let j = 0; j < responsee.data.length; j++) {
@@ -604,9 +604,9 @@ function UserPage() {
                 <h3>3. {bestcase[2]}</h3>
                 <br></br>
                 <h3>{recipestate[arrInd]}</h3>
+                <h3>{bestcase[arrInd]}</h3>
                 <h3>Cook Time: {cooktime[arrInd]} minutes</h3>
                 <h3>Calories: {recipecalorie[arrInd]} kcal</h3>
-                <h3>{bestcase[arrInd]}</h3>
                 <h3 className="display-linebreak">{ingredientlist[arrInd]}</h3>
                 <h3>{bestcasedesc[arrInd]}</h3>
 
