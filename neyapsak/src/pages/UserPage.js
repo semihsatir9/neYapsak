@@ -47,6 +47,8 @@ function UserPage() {
     const [cheese_dislike, setCheese_dislike] = useState(false);
     const [allrecipes, setAllRecipes] = useState([]);
     const [recipeids, setRecipeids] = useState([]);
+    const [cooktime, setCookTime] = useState([]);
+    const [recipecalorie, setRecipeCalorie] = useState([]);
     const [recipestate, setRecipeState] = useState([])
     const [bestcase, setBestCase] = useState([])
     const [bestcasedesc, setBestCaseDesc] = useState([])    
@@ -315,7 +317,7 @@ function UserPage() {
         const response = await Axios.post('http://localhost:3001/getrecipeids');
             setRecipeids([])
             for(let i = 0; i < response.data.length; i++){
-                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, recipedesc : response.data[i].recipeDesc, score: 0, state: ""})
+                recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, recipedesc : response.data[i].recipeDesc, score: 0, recipecal: 0, state: ""})
             }
             console.log(recipeids)
             console.log(recipeids[0].recipeid)
@@ -450,6 +452,7 @@ function UserPage() {
             }
 
             console.log(calorieVal)
+            recipeids[i].recipecal = calorieVal;
 
             //calorie done
 
@@ -487,7 +490,8 @@ function UserPage() {
 
             
             console.log(recipeids)
-            
+            setCookTime([recipeids[0].recipetime, recipeids[1].recipetime, recipeids[2].recipetime, "0"])
+            setRecipeCalorie([recipeids[0].recipecal, recipeids[1].recipecal, recipeids[2].recipecal, "0"])
             setRecipeState([recipeids[0].state,recipeids[1].state,recipeids[2].state, ""])
             setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
             //recipe ingredient list array here. With the function
@@ -601,6 +605,8 @@ function UserPage() {
                 <br></br>
                 <h3>{recipestate[arrInd]}</h3>
                 <h3>{bestcase[arrInd]}</h3>
+                <h3>Cook Time: {cooktime[arrInd]} minutes</h3>
+                <h3>Calories: {recipecalorie[arrInd]} kcal</h3>
                 <h3 className="display-linebreak">{ingredientlist[arrInd]}</h3>
                 <h3>{bestcasedesc[arrInd]}</h3>
 
