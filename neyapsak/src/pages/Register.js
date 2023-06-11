@@ -28,9 +28,9 @@ function Register() {
             }
             else{
                 setStatus("Successfully Registered") 
-                setTimeout(function() {
-                    navigate("/login");
-                  }, 5000);
+                setTimeout(function () {
+                    navigate('/login');
+                  }, 1000);
                 
             }
         });
@@ -43,15 +43,14 @@ function Register() {
         <div className="centered">
         <div className="box">
         <br></br>
-        <form onSubmit={register}>
+        
         <h2>Register</h2>
         <br></br>
         <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => { setUsername(e.target.value) }} required/>
         <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
         title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required/>
         <h6>{Status}</h6>
-        <button class="button"><span>Register as End User</span></button>
-        </form>
+        <button class="button" onClick = {register}><span>Register as End User</span></button>
         <br></br><br></br>
         </div>
         </div>
