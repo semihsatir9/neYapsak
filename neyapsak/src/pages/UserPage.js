@@ -555,7 +555,7 @@ function UserPage() {
                 <label>Q1: Will you include your inventory to your preferences? (If selected, you will be presented with recipes that you have the ingredients for)</label>
                 <input type = "checkbox" id = "supermarket" name="supermarket"  onChange={()=>handleCheck(supermarketBool)}></input><br></br><br></br>
                 <label>Q2: How much time do you have to prepare dinner? (In Minutes. Average recipe time is 25 minutes, while the maximum recipe time is 45 minutes.)</label><br></br><br></br>
-                <input type = "int" id = "time" name="timeq" onChange={e=>setUserTime(e.target.value)}></input><br></br><br></br>
+                <input type = "int" id = "time" name="timeq" min = "1" max = "45" onChange={e=>setUserTime(e.target.value)}></input><br></br><br></br>
                 <label>Q3: What ingredients do you not prefer?</label><br></br><br></br>
                 <div className="inlineBlock">
                 <input type = "checkbox" id = "dislike1" name="dislike1" value = "Rice" onChange={()=>handleCheck("rice")}></input>

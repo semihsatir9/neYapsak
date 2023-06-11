@@ -49,7 +49,7 @@ function Register() {
         <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => { setUsername(e.target.value) }} required/>
         <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
         title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required/>
-        <h6>{Status}</h6>
+        <h4>{Status}</h4>
         <button class="button" onClick = {register}><span>Register as End User</span></button>
         <br></br><br></br>
         </div>
