@@ -12,20 +12,20 @@ function UserPage() {
     const [password, setPassword] = useState("");
     const [inventoryStatus, setInventoryStatus] = useState("");
     const [Status, setStatus] = useState("");
-    const [ing_rice,setIng_rice] = useState(0);
-    const [ing_tomato,setIng_tomato] = useState(0);
-    const [ing_egg,setIng_egg] = useState(0);
-    const [ing_butter,setIng_butter] = useState(0);
-    const [ing_garlic,setIng_garlic] = useState(0);
-    const [ing_chicken,setIng_chicken] = useState(0);
-    const [ing_milk,setIng_milk] = useState(0);
-    const [ing_onion,setIng_onion] = useState(0);
-    const [ing_meat,setIng_meat] = useState(0);
-    const [ing_carrot,setIng_carrot] = useState(0);
-    const [ing_potato,setIng_potato] = useState(0);
-    const [ing_bean,setIng_bean] = useState(0);
-    const [ing_pasta,setIng_pasta] = useState(0);
-    const [ing_cheese,setIng_cheese] = useState(0);
+    const [ing_rice,setIng_rice] = useState("0");
+    const [ing_tomato,setIng_tomato] = useState("0");
+    const [ing_egg,setIng_egg] = useState("0");
+    const [ing_butter,setIng_butter] = useState("0");
+    const [ing_garlic,setIng_garlic] = useState("0");
+    const [ing_chicken,setIng_chicken] = useState("0");
+    const [ing_milk,setIng_milk] = useState("0");
+    const [ing_onion,setIng_onion] = useState("0");
+    const [ing_meat,setIng_meat] = useState("0");
+    const [ing_carrot,setIng_carrot] = useState("0");
+    const [ing_potato,setIng_potato] = useState("0");
+    const [ing_bean,setIng_bean] = useState("0");
+    const [ing_pasta,setIng_pasta] = useState("0");
+    const [ing_cheese,setIng_cheese] = useState("0");
     const [userid,setUserid] = useState(0);
     const [supermarketBool, setSupermarketBool] = useState(false);
     const [userTime, setUserTime] = useState("");
@@ -224,6 +224,7 @@ function UserPage() {
             ing_bean: ing_bean,
             ing_pasta: ing_pasta,
             ing_cheese: ing_cheese
+
         }).then((response) => {
             //Will update the inventory. Response is the table that is filled with the
             //updated values
