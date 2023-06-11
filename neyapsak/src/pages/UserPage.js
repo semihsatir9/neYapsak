@@ -610,6 +610,7 @@ function UserPage() {
                 <h3>Calories: {recipecalorie[arrInd]} kcal</h3>
                 <h3 className="display-linebreak">{ingredientlist[arrInd]}</h3>
                 <h3>{bestcasedesc[arrInd]}</h3>
+                <br></br>
 
                 <button className="button" onClick={() =>
                     arrayPrev(arrInd)
