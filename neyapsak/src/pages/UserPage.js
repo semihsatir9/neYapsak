@@ -551,7 +551,7 @@ function UserPage() {
         </div>
             <div className="align-left" >
                 
-                <h6>Optimization</h6>
+                <h6>Questions</h6>
                 <h1></h1> 
                 <label>Q1: Will you include your inventory to your preferences? (If selected, you will be presented with recipes that you have the ingredients for)</label>
                 <input type = "checkbox" id = "supermarket" name="supermarket"  onChange={()=>handleCheck(supermarketBool)}></input><br></br><br></br>
