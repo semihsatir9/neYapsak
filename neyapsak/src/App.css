@@ -233,3 +233,7 @@ input[type=number], select {
 .inlineBlock{
   display: inline-block;
 }
+
+.colorRed{
+  color: red
+}

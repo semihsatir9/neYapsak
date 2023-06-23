@@ -28,9 +28,9 @@ function UserPage() {
     const [ing_cheese,setIng_cheese] = useState("0");
     const [userid,setUserid] = useState(0);
     const [supermarketBool, setSupermarketBool] = useState(false);
-    const [userTime, setUserTime] = useState("");
+    const [userTime, setUserTime] = useState(0);
     const [userDislike, setUserDislike] = useState("");
-    const [userCal, setUserCal] = useState("");
+    const [userCal, setUserCal] = useState(0);
     const [rice_dislike, setRice_dislike] = useState(false);
     const [tomato_dislike, setTomato_dislike] = useState(false);
     const [egg_dislike, setEgg_dislike] = useState(false);
@@ -196,7 +196,7 @@ function UserPage() {
 
     function updateInventory(){
 
-        if(ing_egg == "" || ing_tomato == "" || ing_rice == ""){
+        if(ing_rice == "" || ing_tomato == "" || ing_egg == "" || ing_butter == "" || ing_garlic == "" || ing_chicken == "" || ing_milk == "" || ing_onion == "" || ing_carrot == "" || ing_meat == "" || ing_potato == "" || ing_bean == "" || ing_pasta == "" || ing_cheese == ""){
             setInventoryStatus("Fill all the ingredient data.")
             setTimeout(function() {
                 setInventoryStatus("")
@@ -321,12 +321,11 @@ function UserPage() {
                 recipeids.push({recipeName:response.data[i].recipeName ,recipeid: response.data[i].recipeID, recipetime: response.data[i].time, recipedesc : response.data[i].recipeDesc, score: 0, recipecal: 0, state: ""})
             }
             console.log(recipeids)
-            console.log(recipeids[0].recipeid)
 
         
 
-        console.log("1. Before For loop")
-        console.log(recipeids)
+            console.log("1. Before For loop")
+            console.log(recipeids)
 
         let dislikedarray = []
             if(rice_dislike){
@@ -373,6 +372,8 @@ function UserPage() {
             }
 
 
+            //the main for loop where all the magic happens
+            
         for(let i = 0; i < recipeids.length; i++){
             console.log("2. Entereed For Loop")
             let score = 0;
@@ -382,14 +383,14 @@ function UserPage() {
                 const userinventory = await Axios.post('http://localhost:3001/getuserinventory', {userid: userid});
                 console.log("4. Recipe ingredients gathered")
 
-                //nonscalable so we have to check all manually
+                //check all ingredients manually
 
                 for(let j = 0; j < recipeingredient.data.length; j++){
                     for(let k = 0; k < userinventory.data.length; k++){
                         if(recipeingredient.data[j].ingredientId == userinventory.data[k].ingrId){
                             if(userinventory.data[k].ingrAmount < recipeingredient.data[j].amount){
                                 score -= 150;
-                                console.log("Score moment")
+                                console.log("Penalty applied due to insufficient amount of ingredients")
                             }
                         }
                     }
@@ -401,7 +402,6 @@ function UserPage() {
             
             //inventory check done
             //problem of time
-
 
                 
             //userTime == recipeids[i].recipetime, score = 100
@@ -440,7 +440,7 @@ function UserPage() {
 
             //disliked food done
 
-            //calorie
+            //get total calories
             let calorieVal = await getCaloriesTotal(recipeids[i].recipeid)
 
 
@@ -468,22 +468,19 @@ function UserPage() {
 
             for(let i = 0; i < recipeids.length; i++){
 
-                //Inner pass
                 for(let j = 0; j < recipeids.length - i - 1; j++){
-        
-                    //Value comparison using ascending order
-        
+
                     if(recipeids[j + 1].score >= recipeids[j].score){
-        
                         //Swapping
                         [recipeids[j + 1],recipeids[j]] = [recipeids[j],recipeids[j + 1]]
                     }
                 }
             };
 
+            //if the score is very low, keep the user informed about the unoptimal 
             for(let i = 0; i < recipeids.length; i++){
-                if(recipeids[i].score <= -50){
-                    recipeids[i].state = "The algorithm has deemed this recipe to be too unoptimal"
+                if(recipeids[i].score <= -10){
+                    recipeids[i].state = "The algorithm has deemed this recipe to be too unoptimal!"
                 } else {
                     recipeids[i].state = ""
                 }
@@ -494,7 +491,7 @@ function UserPage() {
             setCookTime([recipeids[0].recipetime, recipeids[1].recipetime, recipeids[2].recipetime, "0"])
             setRecipeCalorie([recipeids[0].recipecal, recipeids[1].recipecal, recipeids[2].recipecal, "0"])
             setRecipeState([recipeids[0].state,recipeids[1].state,recipeids[2].state, ""])
-            setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName, "Out of alternatives."])
+            setBestCase([recipeids[0].recipeName,recipeids[1].recipeName,recipeids[2].recipeName])
             //recipe ingredient list array here. With the function
 
             const ingrresponse = await Axios.post('http://localhost:3001/getrecipeingredients', {recipeid: recipeids[0].recipeid});
@@ -533,7 +530,7 @@ function UserPage() {
         return ingredientlist
     }
         //Main Lines
-        //This is the start of the whole recipe creation plan
+        
         
 
 
@@ -602,7 +599,7 @@ function UserPage() {
                 <h3>2. {bestcase[1]}</h3>
                 <h3>3. {bestcase[2]}</h3>
                 <br></br>
-                <h3>{recipestate[arrInd]}</h3>
+                <h3 className="colorRed">{recipestate[arrInd]}</h3>
                 <h3>{bestcase[arrInd]}</h3>
                 <h3>Cook Time: {cooktime[arrInd]} minutes</h3>
                 <h3>Calories: {recipecalorie[arrInd]} kcal</h3>
