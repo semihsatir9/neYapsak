@@ -583,6 +583,8 @@ function UserPage() {
                 <label for = "dislike12">Pasta</label>
                 <input type = "checkbox" id = "dislike14" name="dislike14" value = "Cheese" onChange={()=>handleCheck("cheese")}></input>
                 <label for = "dislike12">Cheese</label>
+                <input type = "checkbox" id = "dislike15" name="dislike15" value = "Brocolli" onChange={()=>handleCheck("brocolli")}></input>
+                <label for = "dislike15">Brocolli</label>
                 </div>
                 <br></br><br></br>
                 <label>Q4: How much calories can you tolarate? (Calorie calculation is based on the ingredients alone. Calories lost or gained on the cooking process of the meal is not accounted. Average calories for general recipes is around 1500-2000)</label><br></br><br></br>
@@ -677,6 +679,9 @@ function UserPage() {
                 <div className="ingredientBox"> Cheese (Grams)
                 <input type="text" name="cheese" id="cheese" value={ing_cheese} onChange={(e) => { setIng_cheese(e.target.value) }} required/>
                 </div>
+
+
+                
 
                 <h2>{inventoryStatus}</h2>
 
