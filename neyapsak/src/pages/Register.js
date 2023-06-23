@@ -24,7 +24,10 @@ function Register() {
             console.log(response)
             if(response.data.message){
                 setStatus(response.data.message)
-                window.location.reload(false);
+                setTimeout(function () {
+                    window.location.reload(false);
+                  }, 1000);
+                
             }
             else{
                 setStatus("Successfully Registered") 

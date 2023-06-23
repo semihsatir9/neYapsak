@@ -185,7 +185,7 @@ function UserPage() {
               }
             }
           }
-          totalCalories = parseInt(totalCalories)
+          
           return totalCalories;
         } catch(error) {
           console.error(error);
@@ -503,8 +503,6 @@ function UserPage() {
             setIngredientList([getIngredientList(ingrresponse),getIngredientList(ingrresponse2),getIngredientList(ingrresponse3)])
             setBestCaseDesc([recipeids[0].recipedesc,recipeids[1].recipedesc,recipeids[2].recipedesc, "No description"])
             setResultDiv(false)
-
-            console.log(ingredientlist)
     
     
     
