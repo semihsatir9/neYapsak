@@ -583,7 +583,7 @@ function UserPage() {
                 <label for = "dislike12">Pasta</label>
                 <input type = "checkbox" id = "dislike14" name="dislike14" value = "Cheese" onChange={()=>handleCheck("cheese")}></input>
                 <label for = "dislike12">Cheese</label>
-                <input type = "checkbox" id = "dislike15" name="dislike15" value = "Brocolli" onChange={()=>handleCheck("brocolli")}></input>
+                <input type = "checkbox" id = "dislike15" name="dislike15" value = "Brocolli" checked onChange={()=>handleCheck("brocolli")}></input>
                 <label for = "dislike15">Brocolli</label>
                 </div>
                 <br></br><br></br>
