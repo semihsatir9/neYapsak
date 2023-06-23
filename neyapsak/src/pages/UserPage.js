@@ -245,8 +245,8 @@ function UserPage() {
     }
 
     function arrayPass(arrInd){
-        if(arrInd == 3){
-            setArrInd(3)
+        if(arrInd == 2){
+            setArrInd(2)
         } else {
             setArrInd(arrInd+1)
         }
